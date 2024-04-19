@@ -1,4 +1,4 @@
-import React,{usestate} from 'react';
+import React,{useState} from 'react';
 
 const SignupPage = () => {
     const [username, setUsername] = useState('');
@@ -50,9 +50,9 @@ const SignupPage = () => {
 
 const LoginPage=()=>
 {
-    const[setUserName,username]=usestate('');
-    const[setPassword,password]=usestate('');
-    const[setError,error]=usestate('');
+    const[setUserName,username]=useState('');
+    const[setPassword,password]=useState('');
+    const[setError,error]=useState('');
 
 
 const handlelogin=()=>
