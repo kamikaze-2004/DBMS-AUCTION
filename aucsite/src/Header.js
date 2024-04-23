@@ -21,6 +21,7 @@ export default function Header() {
           <div className="navbar-nav">
             <Link to="/login" className="px-2 text-white">Login</Link>
             <Link to="/register"className="px-2 text-white">Register</Link>
+            <Link to="/prod_ins"className="px-2 text-white">product_reg</Link>
             {/* <Link to="/login">Login</Link> */}
           </div>
         </div>
