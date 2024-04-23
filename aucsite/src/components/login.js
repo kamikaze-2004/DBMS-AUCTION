@@ -20,8 +20,8 @@ function Login() {
                       <label htmlFor="password" className="form-label">Password</label>
                       <input type="password" className="form-control " id="password" placeholder="Password" />
                     </div>
-                    <Link to="/"><button type="submit" className="btn btn-primary ml-3 pl-3 m-50">Submit</button></Link>
-                    <Link to="/register"><button type="submit" className="btn btn-primary ml-5 pl-5 m-50">Register</button></Link>
+                    <Link to="/"><button type="submit" className="btn btn-primary mr-3 pl-3 m-50">Submit</button></Link>
+                    <Link to="/register"><button type="submit" className="btn btn-primary mx-5 pl-5 m-50">Register</button></Link>
                   </form>
                 </div>
               </div>
