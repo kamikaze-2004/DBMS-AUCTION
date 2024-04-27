@@ -17,7 +17,7 @@ function Login() {
     try {
       console.log("data:", formData);
       const response = await axios.post(
-        "http://localhost:3001/login",
+        "http://localhost:3001/user/login",
         formData
       );
       if(response.status===200)
