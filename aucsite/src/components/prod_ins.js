@@ -32,7 +32,7 @@ export default function Prod_ins() {
     e.preventDefault();
     try {
       console.log("data:", formData);
-      const response = await axios.post("http://localhost:3001/prod_ins", formData);
+      const response = await axios.post("http://localhost:3001/user/prod_ins", formData);
       console.log("product registered successfully:", response.data);
     } catch (err) {
       console.error("Error registering product:", err);

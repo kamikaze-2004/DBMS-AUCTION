@@ -20,14 +20,13 @@ function Login() {
         "http://localhost:3001/user/login",
         formData
       );
-      if(response.status===200)
-      {
-        window.location.href="http://localhost:3000";
+      if (response.status === 200) {
+        window.location.href = "http://localhost:3000/login";
       }
       console.log("User logged-in successfully:", response.data);
-      alert("login successfull "+formData.username);
+      alert("login successfull " + formData.username);
     } catch (err) {
-      alert("login unsuccessfull.Try again"+formData.username);
+      alert("login unsuccessfull.Try again" + formData.username);
       console.error("Error logging in user:", err);
     }
   };
