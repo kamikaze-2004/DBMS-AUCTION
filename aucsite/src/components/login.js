@@ -21,7 +21,7 @@ function Login() {
         formData
       );
       if (response.status === 200) {
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = "http://localhost:3000/dashboard";
       }
       console.log("User logged-in successfully:", response.data);
       alert("login successfull " + formData.username);
