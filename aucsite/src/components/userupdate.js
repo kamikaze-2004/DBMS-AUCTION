@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 //import '/Users/amvis/Desktop/DBMS-Auction/DBMS-AUCTION/aucsite/src/login.css'; // Assuming you have your custom styles in this file
 
-function Register() {
+function UserUpdate() {
   const [formData, SetFormData] = useState({
     username: "",
     email: "",
@@ -25,7 +25,7 @@ function Register() {
     e.preventDefault();
     try {
       console.log("data:", formData);
-      const response = await axios.post("http://localhost:3001/user/register", formData);
+      const response = await axios.post("http://localhost:3001/user/userUpdate", formData);
       console.log("User registered successfully:", response.data);
     } catch (err) {
       console.error("Error registering user:", err);
@@ -200,4 +200,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default UserUpdate;
