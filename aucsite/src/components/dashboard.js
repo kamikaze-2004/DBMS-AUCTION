@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import React from "react";
 //import axios from "axios";
 
-function Dashboard() {
+function Dashboard({ user }) {
+  
   return (
     <div>
       <h1>welcome to your dashboard</h1>
@@ -19,6 +20,7 @@ function Dashboard() {
       <Link to="/viewCart" className="px-2 text-white">
         <button>Cart</button>
       </Link>
+      {console.log("user"+user)};
     </div>
   );
 }

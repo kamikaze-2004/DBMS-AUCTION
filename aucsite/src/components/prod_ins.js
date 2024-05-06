@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
-export default function Prod_ins() {
+export default function ProdIns() {
   const [saleType, setSaleType] = useState("direct");
 
   const handleSaleTypeChange = (event) => {
