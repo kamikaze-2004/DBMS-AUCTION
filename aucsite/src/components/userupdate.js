@@ -26,7 +26,7 @@ function UserUpdate({ user }) {
     try {
       console.log("data:", formData);
       const response = await axios.post(
-        "http://localhost:3001/user/userUpdate",
+        `http://localhost:3001/user/userUpdate/${user}`,
         formData
       );
       console.log("User updated successfully:", response.data);
@@ -36,12 +36,12 @@ function UserUpdate({ user }) {
   };
   return (
     <div className="containter-fluid  bg-light text-dark">
-      <h1 className="text-black text-center">Update Info-{user}</h1>
+      <h1 className="text-black text-center">Update Info {user}</h1>
       <form
         className="row justify-content-center mt-3 mx-auto w-75 text-start"
         onSubmit={handleSubmit}
       >
-        <div className="form-group mb-3">
+        {/* <div className="form-group mb-3">
           <label htmlFor="inputUserName">Username</label>
           <input
             type="text"
@@ -52,7 +52,7 @@ function UserUpdate({ user }) {
             value={formData.username}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className="form-row ">
           <div className="form-group col-md-6 mb-3">
             <label
@@ -196,7 +196,7 @@ function UserUpdate({ user }) {
           </div>
         </div>
         <button type="submit" className="btn btn-primary mb-5 w-25">
-          Register
+          update
         </button>
       </form>
     </div>

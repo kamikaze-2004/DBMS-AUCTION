@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 //import { useState } from "react";
 export default function Home({ user }) {
   return (
@@ -12,9 +12,9 @@ export default function Home({ user }) {
       <a href="/register">
         <button className="btn btn-primary mt-2 mb-2 mx-5">Register</button>
       </a>
-      <Link to="/dashboard">
+      {/* <Link to="/dashboard">
         <button className="btn btn-primary mt-2 mb-2 mx-5">My-Profile</button>
-      </Link>
+      </Link> */}
     </div>
   );
 }
