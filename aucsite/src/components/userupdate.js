@@ -29,14 +29,14 @@ function UserUpdate({ user }) {
         "http://localhost:3001/user/userUpdate",
         formData
       );
-      console.log("User registered successfully:", response.data);
+      console.log("User updated successfully:", response.data);
     } catch (err) {
-      console.error("Error registering user:", err);
+      console.error("Error updating user:", err);
     }
   };
   return (
     <div className="containter-fluid  bg-light text-dark">
-      <h1 className="text-black text-center">Register</h1>
+      <h1 className="text-black text-center">Update Info-{user}</h1>
       <form
         className="row justify-content-center mt-3 mx-auto w-75 text-start"
         onSubmit={handleSubmit}

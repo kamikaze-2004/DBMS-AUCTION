@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function ViewInfo({ user }) {
   const [loading, setLoading] = useState(true);
@@ -28,7 +29,7 @@ function ViewInfo({ user }) {
   console.log(user);
 
   return(
-    <div>
+    <div className="mx-5">
         <h1>{user}-details</h1>
         <table>
             <tbody>
@@ -71,6 +72,7 @@ function ViewInfo({ user }) {
 
             </tbody>
         </table>
+       <Link to='/userUpdate'> <button className="btn btn-primary mx-5">Update Info</button></Link>
     </div>
   )
 }
