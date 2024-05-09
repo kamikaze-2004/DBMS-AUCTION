@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom/dist";
 //import '/Users/amvis/Desktop/DBMS-Auction/DBMS-AUCTION/aucsite/src/login.css'; // Assuming you have your custom styles in this file
 
 function UserUpdate({ user }) {
@@ -17,6 +18,7 @@ function UserUpdate({ user }) {
     state: "",
     zipcode: "",
   });
+  const navigate=useNavigate();
 
   const handleChange = (e) => {
     SetFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,6 +32,10 @@ function UserUpdate({ user }) {
         formData
       );
       console.log("User updated successfully:", response.data);
+      if(response.status===200)
+        {
+          navigate("/viewInfo");
+        }
     } catch (err) {
       console.error("Error updating user:", err);
     }

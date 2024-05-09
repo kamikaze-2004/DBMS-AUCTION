@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
-export default function ProdIns() {
+export default function ProdIns({ user }) {
   const [saleType, setSaleType] = useState("direct");
 
   const handleSaleTypeChange = (event) => {
@@ -22,22 +25,32 @@ export default function ProdIns() {
   const handleChange = (e) => {
     SetFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log("data:", formData);
       const response = await axios.post(
-        "http://localhost:3001/user/prod_ins",
+        `http://localhost:3001/user/prod_ins/${user}`,
         formData
       );
       console.log("product registered successfully:", response.data);
+      if (response.status === 200) {
+        toast.success("Product added to sale successfully", {
+          onClose: () => navigate("/dashboard"),
+        }); //change path to view user products if needed
+      }
     } catch (err) {
+      toast.error(
+        "failed to add product for sale. kindly recheck your credentials  "
+      );
       console.error("Error registering product:", err);
     }
   };
 
   return (
     <div className="container">
+      <ToastContainer />
       <div className="row justify-content-center mt-5 mx-auto w-75 ">
         <div className="col-md-6">
           <div className="card ">
@@ -156,7 +169,7 @@ export default function ProdIns() {
                         className="form-control "
                         id="email"
                         placeholder="Enter email"
-                        name="username"
+                        name="email"
                         value={formData.email}
                         onChange={handleChange}
                       />

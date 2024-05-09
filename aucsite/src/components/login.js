@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
-
-function Login({ setUser,user }) {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+function Login({ setUser, user }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -24,12 +25,13 @@ function Login({ setUser,user }) {
       if (response.status === 200) {
         console.log(response.data);
         setUser(response.data); // Set the user state with the received user object
-        navigate(`/dashboard`); // Redirect to the dashboard route
-        alert("Login successful!"+response.data);
-       
+        toast.success("login successful ", { onClose:()=> navigate("/dashboard") });
+        //navigate(`/dashboard`); // Redirect to the dashboard route
+      } else {
+        toast.error("login unsuccessful");
       }
     } catch (err) {
-      alert("Login unsuccessful. Please try again.");
+      toast.error("login unsuccessful");
       console.error("Error logging in user:", err);
     }
   };
@@ -73,7 +75,11 @@ function Login({ setUser,user }) {
                     onChange={handleChange}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary mr-3" onClick={handleChange}>
+                <button
+                  type="submit"
+                  className="btn btn-primary mr-3 mb-2"
+                  onClick={handleChange}
+                >
                   Login
                 </button>
                 <Link to="/register" className="btn btn-primary">
@@ -84,6 +90,7 @@ function Login({ setUser,user }) {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

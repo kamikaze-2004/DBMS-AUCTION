@@ -20,7 +20,7 @@ function Dashboard({ user }) {
       <Link to="/viewCart" className="px-2 text-white">
         <button>Cart</button>
       </Link>
-      {console.log("user"+user)};
+      {console.log("user"+user)}
     </div>
   );
 }
