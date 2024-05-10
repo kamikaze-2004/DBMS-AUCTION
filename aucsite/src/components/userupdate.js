@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom/dist";
+import {  ToastContainer,toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //import '/Users/amvis/Desktop/DBMS-Auction/DBMS-AUCTION/aucsite/src/login.css'; // Assuming you have your custom styles in this file
 
 function UserUpdate({ user }) {
@@ -32,16 +34,18 @@ function UserUpdate({ user }) {
         formData
       );
       console.log("User updated successfully:", response.data);
-      if(response.status===200)
-        {
-          navigate("/viewInfo");
-        }
+      if (response.status === 200) {
+        toast.success("User updated successfully");
+        navigate("/viewInfo");
+      }
     } catch (err) {
       console.error("Error updating user:", err);
+      toast.error("Failed to update user");
     }
   };
   return (
     <div className="containter-fluid  bg-light text-dark">
+     
       <h1 className="text-black text-center">Update Info {user}</h1>
       <form
         className="row justify-content-center mt-3 mx-auto w-75 text-start"
@@ -205,6 +209,7 @@ function UserUpdate({ user }) {
           update
         </button>
       </form>
+      <ToastContainer/>
     </div>
   );
 }

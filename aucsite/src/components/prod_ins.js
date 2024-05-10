@@ -49,7 +49,7 @@ export default function ProdIns({ user }) {
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid ">
       <ToastContainer />
       <div className="row justify-content-center mt-5 mx-auto w-75 ">
         <div className="col-md-6">

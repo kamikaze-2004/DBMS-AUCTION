@@ -30,13 +30,13 @@ function Register() {
     }
   };
   return (
-    <div className="containter-fluid  bg-light text-dark">
-      <h1 className="text-black text-center">Register</h1>
-      <form
-        className="row justify-content-center mt-3 w-50 text-start formwidth"
+    <div className="containter-fluid  bg-light text-dark mt-5">
+      <h1 className="text-black text-center ">Register</h1>
+      <form 
+        className="row justify-content-center mt-3 w-50 text-start formwidth "
         onSubmit={handleSubmit}
       >
-        <div className="form-group mb-3">
+        <div className="form-group mb-3 ">
           <label htmlFor="inputUserName">Username</label>
           <input
             type="text"
@@ -66,7 +66,7 @@ function Register() {
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-6 mb-3">
+          <div className="form-group col-md-6 mb-3 r">
             <label htmlFor="inputPassword4">Password</label>
             <input
               type="password"
@@ -93,7 +93,7 @@ function Register() {
           </div>
         </div>
             */}
-        <button type="submit" className="btn btn-primary mb-5 w-25 center">
+        <button type="submit" className="btn btn-primary mb-5 w-25 center ">
           Register
         </button>
       </form>

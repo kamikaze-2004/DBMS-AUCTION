@@ -22,7 +22,7 @@ const UserProfile = () => {
   }, []);
 
   return (
-    <div>
+    <div className='container-fluid text-center'>
       <h1>User Profile</h1>
       {loading ? (
         <p>Loading...</p>

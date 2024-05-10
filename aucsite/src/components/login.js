@@ -37,7 +37,7 @@ function Login({ setUser, user }) {
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid text-center">
       <div className="row justify-content-center mt-5 mx-auto w-75">
         <div className="col-md-6">
           <div className="card">
@@ -77,12 +77,12 @@ function Login({ setUser, user }) {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary mr-3 mb-2"
+                  className="btn btn-primary rounded-pill px-5"
                   onClick={handleChange}
                 >
                   Login
                 </button>
-                <Link to="/register" className="btn btn-primary">
+                <Link to="/register" className="btn btn-primary btn btn-secondary rounded-pill px-5">
                   Register
                 </Link>
               </form>
