@@ -9,12 +9,14 @@ import Dashboard from "./components/dashboard";
 import ViewInfo from "./components/viewInfo";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [user, setUser] = useState(null);
   return (
     <div className="App">
-      <Header />
+      <Header user={user}/>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home user={user} />} />
         <Route path="/login" element={<Login setUser={setUser} user={user}/>} />

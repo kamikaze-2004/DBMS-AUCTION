@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
@@ -50,7 +50,6 @@ export default function ProdIns({ user }) {
 
   return (
     <div className="container-fluid ">
-      <ToastContainer />
       <div className="row justify-content-center mt-5 mx-auto w-75 ">
         <div className="col-md-6">
           <div className="card ">

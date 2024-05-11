@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom/dist";
-import {  ToastContainer,toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //import '/Users/amvis/Desktop/DBMS-Auction/DBMS-AUCTION/aucsite/src/login.css'; // Assuming you have your custom styles in this file
 
@@ -209,7 +209,6 @@ function UserUpdate({ user }) {
           update
         </button>
       </form>
-      <ToastContainer/>
     </div>
   );
 }
