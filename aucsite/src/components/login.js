@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-function Login({ setUser, user }) {
+
+function Login({ setUser }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -23,7 +24,8 @@ function Login({ setUser, user }) {
         formData
       );
       if (response.status === 200) {
-        console.log(response.data);
+        const { username } = formData;
+        document.cookie = `username=${username}; expires=${new Date(Date.now() + 86400000).toUTCString()}`;
         setUser(response.data); // Set the user state with the received user object
         toast.success("login successful user");
         //{ onClose:()=> navigate("/dashboard") }
@@ -80,10 +82,13 @@ function Login({ setUser, user }) {
                 <button
                   type="submit"
                   className="btn btn-primary rounded-pill px-5"
-                  onClick={handleChange}
                 >
                   Login
                 </button>
+                <Link
+                  to="/register"
+                  className="btn btn-primary btn btn-secondary rounded-pill px-5"
+                >
                 <Link
                   to="/register"
                   className="btn btn-primary btn btn-secondary rounded-pill px-5"
