@@ -20,6 +20,9 @@ function Dashboard({ user }) {
       <Link to="/viewCart" className="px-2 text-white">
         <button className="btn btn-primary btn-block mt-2 mb-2">Cart</button>
       </Link>
+      <Link to="/SoldProduct" className="px-2 text-white">
+        <button className="btn btn-primary btn-block mt-2 mb-2">sold_products</button>
+      </Link>
       {console.log("user"+user)}
     </div>
   );

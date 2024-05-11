@@ -7,6 +7,7 @@ import Header from "./Header";
 import ProdIns from "./components/prod_ins";
 import Dashboard from "./components/dashboard";
 import ViewInfo from "./components/viewInfo";
+import SoldProducts from "./components/SoldProduct";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard user={user} />} />
         <Route path="/userUpdate" element={<UserUpdate user={user} />} />
         <Route path="/viewInfo" element={<ViewInfo user={user} />} />
+        <Route path="/SoldProduct" element={<SoldProducts user={user} />} />
       </Routes>
     </div>
   );
