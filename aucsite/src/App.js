@@ -8,6 +8,7 @@ import ProdIns from "./components/prod_ins";
 import Dashboard from "./components/dashboard";
 import ViewInfo from "./components/viewInfo";
 import SoldProducts from "./components/SoldProduct";
+import PayOrder from "./components/Pay";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
@@ -27,6 +28,8 @@ function App() {
         <Route path="/userUpdate" element={<UserUpdate user={user} />} />
         <Route path="/viewInfo" element={<ViewInfo user={user} />} />
         <Route path="/SoldProduct" element={<SoldProducts user={user} />} />
+        <Route path="/Pay" element={<PayOrder user={user} />}
+        />
       </Routes>
     </div>
   );

@@ -88,7 +88,7 @@ function Login({ setUser }) {
                 <Link
                   to="/register"
                   className="btn btn-primary btn btn-secondary rounded-pill px-5"
-                >
+                ></Link>
                 <Link
                   to="/register"
                   className="btn btn-primary btn btn-secondary rounded-pill px-5"
