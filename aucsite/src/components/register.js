@@ -33,7 +33,7 @@ function Register() {
     <div className="containter-fluid  bg-light text-dark mt-5">
       <h1 className="text-black text-center ">Register</h1>
       <form 
-        className="row justify-content-center mt-3 w-50 text-start formwidth "
+        className="row justify-content-center mt-3 w-50 text-start formwidth  "
         onSubmit={handleSubmit}
       >
         <div className="form-group mb-3 ">

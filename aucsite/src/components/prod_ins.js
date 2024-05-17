@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 export default function ProdIns({ user }) {
   const [saleType, setSaleType] = useState("direct");
-
-  const handleSaleTypeChange = (event) => {
-    setSaleType(event.target.value);
-  };
 
   const [formData, SetFormData] = useState({
     prod_name: "",
@@ -19,9 +15,13 @@ export default function ProdIns({ user }) {
     password: "",
     price: "",
     y_o_u: null,
+    sale_type: "direct",
     duration: null,
   });
-
+  const handleSaleTypeChange = (e) => {
+    setSaleType(e.target.value);
+    SetFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const handleChange = (e) => {
     SetFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -136,6 +136,20 @@ export default function ProdIns({ user }) {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="years_of_use" className="form-label">
+                        Years_of_use
+                      </label>
+                      <input
+                        type="number"
+                        className="form-control "
+                        id="years_of_use"
+                        placeholder="10"
+                        onChange={handleChange}
+                        name="y_o_u"
+                        value={formData.y_o_u}
                       />
                     </div>
                     <div className="mb-3">

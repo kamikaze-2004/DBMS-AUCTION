@@ -4,7 +4,7 @@ import { Dropdown } from "react-bootstrap";
 import { useState } from "react";
 import "../src/styles/register.css";
 
-export default function Header({user}) {
+export default function Header({ user }) {
   const [showDropDown, setShowDropDown] = useState(false);
 
   const handleDropdownToggle = () => {
@@ -23,18 +23,18 @@ export default function Header({user}) {
           {/* <Link to="/login" className="px-2 text-white">
             Login
           </Link> */}
-          {user ? 
-          <Link to="/dashboard" className="px-2 text-white">
-          Dashboard
-        </Link>:
-        <Link to="/login" className="px-2 text-white">
-        Login
-      </Link>
-          }
+          {user ? (
+            <Link to="/dashboard" className="px-2 text-white">
+              Dashboard
+            </Link>
+          ) : (
+            <Link to="/login" className="px-2 text-white">
+              Login
+            </Link>
+          )}
           <Link to="/register" className="px-2 text-white">
             Register
           </Link>
-          
           <Dropdown>
             <Dropdown.Toggle
               variant="success"
@@ -51,12 +51,12 @@ export default function Header({user}) {
               Product
             </Dropdown.Toggle>
             <Dropdown.Menu show={showDropDown} onToggle={handleDropdownToggle}>
-              <Dropdown.Item href="/products_direct" className="text-black">
-                Direct product
+              <Dropdown.Item className="text-black">
+                <Link to="/products_dir" className="text-decoration-none text-dark">Direct product</Link>
               </Dropdown.Item>{" "}
               {/* Added text-white class */}
-              <Dropdown.Item href="/products_auc" className="text-black">
-                Auction product
+              <Dropdown.Item className="text-black text-decoration-none">
+                <Link to="/products_auc" className="text-decoration-none text-dark"> Auction product</Link>
               </Dropdown.Item>{" "}
               {/* Added text-white class */}
             </Dropdown.Menu>

@@ -25,7 +25,9 @@ function Login({ setUser }) {
       );
       if (response.status === 200) {
         const { username } = formData;
-        document.cookie = `username=${username}; expires=${new Date(Date.now() + 86400000).toUTCString()}`;
+        document.cookie = `username=${username}; expires=${new Date(
+          Date.now() + 86400000
+        ).toUTCString()}`;
         setUser(response.data); // Set the user state with the received user object
         toast.success("login successful user");
         //{ onClose:()=> navigate("/dashboard") }
@@ -85,10 +87,7 @@ function Login({ setUser }) {
                 >
                   Login
                 </button>
-                <Link
-                  to="/register"
-                  className="btn btn-primary btn btn-secondary rounded-pill px-5"
-                >
+                
                 <Link
                   to="/register"
                   className="btn btn-primary btn btn-secondary rounded-pill px-5"
