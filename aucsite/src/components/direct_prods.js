@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 const ProductsDir = ({ user }) => {
   const [allProductDetails, setAllProductDetails] = useState([]);
   const [error, setError] = useState(null);
   const currUser = user;
+  const navigate = useNavigate();
+  function onView(pname) {
+    navigate(`/viewProd/${pname}`);
+  }
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
@@ -15,8 +20,8 @@ const ProductsDir = ({ user }) => {
         setAllProductDetails(response.data);
         console.log(response);
       } catch (error) {
-        console.error("Error fetching product details:", error);
-        setError(error.message || "Failed to fetch product details");
+        console.error("Error fetching product details of all products:", error);
+        setError(error.message || "Failed to fetch all product details");
       }
     };
     fetchProductDetails();
@@ -43,10 +48,13 @@ const ProductsDir = ({ user }) => {
                   <p className="card-text">Price: Rs.{product.price}</p>
                   <p className="card-text">
                     Years of Usage:{" "}
-                    {product.y_o_u ? product.y_o_u : "Not for auction"}
+                    {product.y_o_u ? product.y_o_u : "Not mentioned"}
                   </p>
                   <button className="btn btn-primary mx-1">Buy</button>
-                  <button className="btn btn-primary">
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => onView(product.prod_name)}
+                  >
                     View Product Details
                   </button>
                 </div>

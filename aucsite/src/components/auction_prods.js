@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 const ProductsAuc = ({ user }) => {
   const [allProductDetails, setAllProductDetails] = useState([]);
   const [error, setError] = useState(null);
   const currUser = user;
+  const [raiseIndex, setRaiseIndex] = useState(null);
+
+  const navigate = useNavigate();
+  function onView(pname) {
+    navigate(`/viewProd/${pname}`);
+  }
+  //   const [raise,setRaise] = useState(false);
+
+  //   function onRaise()
+  //   {
+  //     setRaise(!raise);
+  //   }
+
+  //   console.log(raise);
+
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
@@ -21,6 +37,9 @@ const ProductsAuc = ({ user }) => {
     };
     fetchProductDetails();
   }, []);
+  const onRaise = (index) => {
+    setRaiseIndex(raiseIndex === index ? null : index);
+  };
 
   return (
     <div className="container-fluid">
@@ -48,8 +67,27 @@ const ProductsAuc = ({ user }) => {
                   <p className="card-text">
                     Auction End Time: Ends in {product.duration} days
                   </p>
-                  <button className="btn btn-primary mx-1">Raise Bid</button>
-                  <button className="btn btn-primary ">
+                  <div>
+                    <button
+                      className="btn btn-primary mx-1"
+                      onClick={() => onRaise(index)}
+                    >
+                      Raise Bid
+                    </button>
+                    {raiseIndex === index && (
+                      <div>
+                        <label for="raise">
+                          Enter your bid(new bid must be atleast 10% higher than
+                          the current bid):
+                        </label>
+                        <input type="number" className="bg-light"></input>
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    className="btn btn-primary "
+                    onClick={() => onView(product.prod_name)}
+                  >
                     View Product Details
                   </button>
                 </div>

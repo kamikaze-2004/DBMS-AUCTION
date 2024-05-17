@@ -14,6 +14,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import ProductsDir from "./components/direct_prods";
 import ProductsAuc from "./components/auction_prods";
+import ViewProduct from "./components/viewProd";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,6 +33,8 @@ function App() {
         <Route path="/SoldProduct" element={<SoldProducts user={user} />} />
         <Route path="/products_dir" element={<ProductsDir user={user} />} />
         <Route path="/products_auc" element={<ProductsAuc user={user} />} />
+        <Route path="/viewProd/:prodname" element={<ViewProduct user={user} />} />
+        <Route path="/pay" element={<PayOrder user={user} />} />
       </Routes>
     </div>
   );
