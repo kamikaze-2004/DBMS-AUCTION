@@ -52,11 +52,22 @@ export default function Header({ user }) {
             </Dropdown.Toggle>
             <Dropdown.Menu show={showDropDown} onToggle={handleDropdownToggle}>
               <Dropdown.Item className="text-black">
-                <Link to="/products_dir" className="text-decoration-none text-dark">Direct product</Link>
+                <Link
+                  to="/products_dir"
+                  className="text-decoration-none text-dark"
+                >
+                  Direct product
+                </Link>
               </Dropdown.Item>{" "}
               {/* Added text-white class */}
               <Dropdown.Item className="text-black text-decoration-none">
-                <Link to="/products_auc" className="text-decoration-none text-dark"> Auction product</Link>
+                <Link
+                  to="/products_auc"
+                  className="text-decoration-none text-dark"
+                >
+                  {" "}
+                  Auction product
+                </Link>
               </Dropdown.Item>{" "}
               {/* Added text-white class */}
             </Dropdown.Menu>

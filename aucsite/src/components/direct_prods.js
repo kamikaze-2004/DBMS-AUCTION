@@ -3,7 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
-const ProductsDir = ({ user }) => {
+const ProductsDir = ({ user, setUser, seller, setSeller }) => {
   const [allProductDetails, setAllProductDetails] = useState([]);
   const [error, setError] = useState(null);
   const currUser = user;
@@ -15,7 +15,7 @@ const ProductsDir = ({ user }) => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/user/products/direct_prods`
+          `http://localhost:3001/user/products/direct_prods/${user}`
         );
         setAllProductDetails(response.data);
         console.log(response);
@@ -25,7 +25,7 @@ const ProductsDir = ({ user }) => {
       }
     };
     fetchProductDetails();
-  }, []);
+  }, [user]);
 
   return (
     <div className="container-fluid">
@@ -50,7 +50,16 @@ const ProductsDir = ({ user }) => {
                     Years of Usage:{" "}
                     {product.y_o_u ? product.y_o_u : "Not mentioned"}
                   </p>
-                  <button className="btn btn-primary mx-1">Buy</button>
+                  <button
+                    className="btn btn-primary mx-1"
+                    onClick={() => {
+                      setSeller(product.username);
+                      console.log("seller ", seller, " user ", user);
+                      navigate(`/pay/${product.prod_name}?price=${product.price}`);
+                    }}
+                  >
+                    Buy
+                  </button>
                   <button
                     className="btn btn-primary"
                     onClick={() => onView(product.prod_name)}

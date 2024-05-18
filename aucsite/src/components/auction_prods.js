@@ -3,7 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
-const ProductsAuc = ({ user }) => {
+const ProductsAuc = ({ user, setUser, seller, setSeller }) => {
   const [allProductDetails, setAllProductDetails] = useState([]);
   const [error, setError] = useState(null);
   const currUser = user;
@@ -26,7 +26,7 @@ const ProductsAuc = ({ user }) => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/user/products/auction_prods`
+          `http://localhost:3001/user/products/auction_prods/${user}`
         );
         setAllProductDetails(response.data);
         console.log(response);
@@ -36,7 +36,7 @@ const ProductsAuc = ({ user }) => {
       }
     };
     fetchProductDetails();
-  }, []);
+  }, [user]);
   const onRaise = (index) => {
     setRaiseIndex(raiseIndex === index ? null : index);
   };

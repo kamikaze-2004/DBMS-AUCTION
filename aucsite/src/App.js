@@ -18,7 +18,8 @@ import ViewProduct from "./components/viewProd";
 
 function App() {
   const [user, setUser] = useState(null);
-  return (
+  const [seller,setSeller]=useState(null);
+    return (
     <div className="App">
       <Header user={user}/>
       <ToastContainer />
@@ -31,10 +32,10 @@ function App() {
         <Route path="/userUpdate" element={<UserUpdate user={user} />} />
         <Route path="/viewInfo" element={<ViewInfo user={user} />} />
         <Route path="/SoldProduct" element={<SoldProducts user={user} />} />
-        <Route path="/products_dir" element={<ProductsDir user={user} />} />
-        <Route path="/products_auc" element={<ProductsAuc user={user} />} />
+        <Route path="/products_dir" element={<ProductsDir user={user} seller={seller} setSeller={setSeller} setUser={setUser}/>} />
+        <Route path="/products_auc" element={<ProductsAuc user={user} seller={seller} setSeller={setSeller} setUser={setUser}/>} />
         <Route path="/viewProd/:prodname" element={<ViewProduct user={user} />} />
-        <Route path="/pay" element={<PayOrder user={user} />} />
+        <Route path="/pay/:prodname" element={<PayOrder user={user} seller={seller} setSeller={setSeller} setUser={setUser}/>} />
       </Routes>
     </div>
   );
