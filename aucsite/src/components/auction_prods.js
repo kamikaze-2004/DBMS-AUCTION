@@ -10,7 +10,7 @@ const ProductsAuc = ({ user }) => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/user/products/auction_prods`
+          `http://localhost:3000/user/products/auction_prods`
         );
         setAllProductDetails(response.data);
         console.log(response);

@@ -15,7 +15,7 @@ const ProductDetails = () => {
         const username = usernameCookie.split('=')[1];
         console.log("Extracted username:", username);
         
-        const response = await axios.get(`http://localhost:3001/api/products/${username}`);
+        const response = await axios.get(`http://localhost:3000/api/products/${username}`);
         setProductDetails(response.data);
         console.log(response)
       } catch (error) {

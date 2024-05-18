@@ -10,7 +10,7 @@ const ProductsDir = ({ user }) => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/user/products/direct_prods`
+          `http://localhost:3000/user/products/direct_prods`
         );
         setAllProductDetails(response.data);
         console.log(response);

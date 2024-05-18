@@ -12,7 +12,7 @@ function ViewInfo({ user }) {
     const getUserData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/user/${user}`
+          `http://localhost:3000/user/${user}`
         );
         SetUserData(response.data);
         setLoading(false);

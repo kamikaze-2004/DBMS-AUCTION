@@ -19,10 +19,7 @@ function Login({ setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `http://localhost:3001/user/login`,
-        formData
-      );
+      const response = await axios.post(`http://localhost:3000/user/login`,formData);
       if (response.status === 200) {
         const { username } = formData;
         document.cookie = `username=${username}; expires=${new Date(
