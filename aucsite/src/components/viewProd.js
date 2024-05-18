@@ -26,7 +26,7 @@ export default function ViewProduct({ user }) {
       }
     };
     fetchProductDetails();
-  });
+  },[]);
 
   const onRaise = () => {
     setRaise(!raise);
