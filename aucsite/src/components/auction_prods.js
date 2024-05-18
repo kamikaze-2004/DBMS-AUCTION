@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 
-const ProductsAuc = ({ user }) => {
+const ProductsAuc = ({ user, setUser, seller, setSeller }) => {
   const [allProductDetails, setAllProductDetails] = useState([]);
   const [error, setError] = useState(null);
   const currUser = user;
@@ -22,7 +22,7 @@ const ProductsAuc = ({ user }) => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/user/products/auction_prods`
+          `http://localhost:3001/user/products/auction_prods/${user}`
         );
         setAllProductDetails(response.data);
         console.log(response);
