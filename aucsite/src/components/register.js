@@ -2,9 +2,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom/dist";
+
 //import '/Users/amvis/Desktop/DBMS-Auction/DBMS-AUCTION/aucsite/src/login.css'; // Assuming you have your custom styles in this file
 
 function Register() {
+
   const [formData, SetFormData] = useState({
     username: "",
     email: "",
