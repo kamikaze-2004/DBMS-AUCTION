@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import Loading from "./loading";
 
-export default function ProdIns({ user }) {
+export default function ProdIns({ user, loading, setLoading }) {
   const [saleType, setSaleType] = useState("direct");
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // Simulate loading delay
+    return () => clearTimeout(timer);
+  }, [setLoading]);
+
+ 
 
   const [formData, SetFormData] = useState({
     prod_name: "",
@@ -48,6 +56,10 @@ export default function ProdIns({ user }) {
     }
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+  
   return (
     <div className="container-fluid ">
       <div className="row justify-content-center mt-5 mx-auto w-75 ">

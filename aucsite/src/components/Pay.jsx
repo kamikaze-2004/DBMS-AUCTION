@@ -3,16 +3,17 @@ import React from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Loading from "./loading";
 //const orderId=generateUniqueId({length:10,useLetters:true,useNumbers:true});
 
 //console.log(orderId);
-export default function PayOrder({ user, setUser, seller, setSeller }) {
+export default function PayOrder({ user, setUser, seller, setSeller,loading,setLoading }) {
   //const [orderId, setOrderId] = useState('');
   const prodname = useParams().prodname;
-  const navigate=useNavigate();
-  const [oid,setOid]=useState(null);
+  const navigate = useNavigate();
+  const [oid, setOid] = useState(null);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -21,6 +22,15 @@ export default function PayOrder({ user, setUser, seller, setSeller }) {
 
   console.log("product name:", prodname);
   console.log("price:", price);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // Simulate loading delay
+    return () => clearTimeout(timer);
+  }, [setLoading]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   const handleOrderNow = async () => {
     try {
@@ -42,16 +52,16 @@ export default function PayOrder({ user, setUser, seller, setSeller }) {
       console.log(endpoint);
 
       const razorpay = new window.Razorpay({
-        key: 'rzp_test_CFpUbryUIn6bk4',
+        key: "rzp_test_CFpUbryUIn6bk4",
         amount: 1000,
         //amount: orderDetails.price*100,
-        currency: 'INR',
+        currency: "INR",
         order_id: oid,
-        name: 'Your order Name',
-        description: 'Order Description',
+        name: "Your order Name",
+        description: "Order Description",
         handler: async function (response) {
           console.log("Payment successful:", response);
-          navigate('/');
+          navigate("/");
           try {
             await axios.post(endpoint, {
               status: "paid",

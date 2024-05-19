@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function ViewInfo({ user }) {
-  const [loading, setLoading] = useState(true);
+function ViewInfo({ user,loading,setLoading }) {
+  // const [loading, setLoading] = useState(true);
   const [error, SetError] = useState(null);
   const [userData, SetUserData] = useState(null);
 
@@ -22,7 +22,7 @@ function ViewInfo({ user }) {
       }
     };
     getUserData();
-  }, [user]);
+  }, [user,setLoading]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   if(!userData) return null;

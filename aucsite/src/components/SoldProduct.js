@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const ProductDetails = () => {
+import Loading from './loading';
+const ProductDetails = (loading,setLoading) => {
   const [productDetails, setProductDetails] = useState([]);
   const [error, setError] = useState(null);
 
@@ -17,6 +17,7 @@ const ProductDetails = () => {
         
         const response = await axios.get(`http://localhost:3001/api/products/${username}`);
         setProductDetails(response.data);
+        setLoading(false);
         console.log(response)
       } catch (error) {
         console.error('Error fetching product details:', error);
@@ -25,7 +26,11 @@ const ProductDetails = () => {
     };
 
     fetchProductDetails();
-  }, []); 
+  }, [setLoading]); 
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="container-fluid">

@@ -1,63 +1,62 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom/dist";
+import { useNavigate } from "react-router-dom";
 
-//import '/Users/amvis/Desktop/DBMS-Auction/DBMS-AUCTION/aucsite/src/login.css'; // Assuming you have your custom styles in this file
-
-function Register() {
-
-  const [formData, SetFormData] = useState({
+function Register({ loading, setLoading }) {
+  const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
-      });
+  });
 
-      const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
-    SetFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when form is submitted
     try {
       console.log("data:", formData);
-      const response = await axios.post("http://localhost:3001/user/register", formData);
+      const response = await axios.post(
+        "http://localhost:3001/user/register",
+        formData
+      );
       console.log("User registered successfully:", response.data);
-      if(response.status===200)
-        {
-          navigate("/");
-        }
+      if (response.status === 200) {
+        navigate("/");
+      }
     } catch (err) {
       console.error("Error registering user:", err);
+    } finally {
+      setLoading(false); // Set loading to false after the API request is completed
     }
   };
+
   return (
-    <div className="containter-fluid  bg-light text-dark mt-5">
-      <h1 className="text-black text-center ">Register</h1>
-      <form 
-        className="row justify-content-center mt-3 w-50 text-start formwidth  "
+    <div className="container-fluid bg-light text-dark mt-5">
+      <h1 className="text-black text-center">Register</h1>
+      <form
+        className="row justify-content-center mt-3 w-50 text-start formwidth"
         onSubmit={handleSubmit}
       >
-        <div className="form-group mb-3 ">
+        <div className="form-group mb-3">
           <label htmlFor="inputUserName">Username</label>
           <input
             type="text"
             className="form-control w-50"
             id="inputUserName"
-            placeholder="UserName"
+            placeholder="Username"
             name="username"
             value={formData.username}
             onChange={handleChange}
           />
         </div>
-        <div className="form-row ">
+        <div className="form-row">
           <div className="form-group col-md-6 mb-3">
-            <label
-              htmlFor="inputEmail4"
-              className="font-weight-bold font-italic"
-            >
-              Email
-            </label>
+            <label htmlFor="inputEmail4" className="font-weight-bold font-italic">Email</label>
             <input
               type="email"
               className="form-control"
@@ -68,7 +67,7 @@ function Register() {
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-6 mb-3 r">
+          <div className="form-group col-md-6 mb-3">
             <label htmlFor="inputPassword4">Password</label>
             <input
               type="password"
@@ -81,22 +80,8 @@ function Register() {
             />
           </div>
         </div>
-{/*         
-        <div className="form-group ">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="gridCheck"
-            />
-            <label className="form-check-label" htmlFor="gridCheck">
-              Check me out
-            </label> 
-          </div>
-        </div>
-            */}
-        <button type="submit" className="btn btn-primary mb-5 w-25 center ">
-          Register
+        <button type="submit" className="btn btn-primary mb-5 w-25 center">
+          {loading ? "Registering..." : "Register"} {/* Conditional button text based on loading state */}
         </button>
       </form>
     </div>

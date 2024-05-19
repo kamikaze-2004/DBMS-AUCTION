@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
+import Loading from "./loading";
 
-const ProductsAuc = ({ user, setUser, seller, setSeller }) => {
+const ProductsAuc = ({ user, setUser, seller, setSeller,loading,setLoading }) => {
   const [allProductDetails, setAllProductDetails] = useState([]);
   const [error, setError] = useState(null);
   const currUser = user;
@@ -13,14 +14,6 @@ const ProductsAuc = ({ user, setUser, seller, setSeller }) => {
   function onView(pname) {
     navigate(`/viewProd/${pname}`);
   }
-  //   const [raise,setRaise] = useState(false);
-
-  //   function onRaise()
-  //   {
-  //     setRaise(!raise);
-  //   }
-
-  //   console.log(raise);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -29,6 +22,7 @@ const ProductsAuc = ({ user, setUser, seller, setSeller }) => {
           `http://localhost:3001/user/products/auction_prods/${user}`
         );
         setAllProductDetails(response.data);
+        setLoading(false);
         console.log(response);
       } catch (error) {
         console.error("Error fetching product details:", error);
@@ -36,10 +30,14 @@ const ProductsAuc = ({ user, setUser, seller, setSeller }) => {
       }
     };
     fetchProductDetails();
-  }, []);
+  }, [allProductDetails,setLoading,user]);
   const onRaise = (index) => {
     setRaiseIndex(raiseIndex === index ? null : index);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="container-fluid">

@@ -15,27 +15,29 @@ import { ToastContainer } from "react-toastify";
 import ProductsDir from "./components/direct_prods";
 import ProductsAuc from "./components/auction_prods";
 import ViewProduct from "./components/viewProd";
+//import LandingPage from "./components/landingpage";
 
 function App() {
   const [user, setUser] = useState(null);
   const [seller,setSeller]=useState(null);
+  const [loading, setLoading] = useState(true);
     return (
     <div className="App">
-      <Header user={user}/>
+      <Header user={user} loading={loading} setLoading={setLoading}/>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home user={user} />} />
-        <Route path="/login" element={<Login setUser={setUser} user={user}/>} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/prod_ins" element={<ProdIns user={user} />} />
-        <Route path="/dashboard" element={<Dashboard user={user} />} />
-        <Route path="/userUpdate" element={<UserUpdate user={user} />} />
-        <Route path="/viewInfo" element={<ViewInfo user={user} />} />
-        <Route path="/SoldProduct" element={<SoldProducts user={user} />} />
-        <Route path="/products_dir" element={<ProductsDir user={user} seller={seller} setSeller={setSeller} setUser={setUser}/>} />
-        <Route path="/products_auc" element={<ProductsAuc user={user} seller={seller} setSeller={setSeller} setUser={setUser}/>} />
-        <Route path="/viewProd/:prodname" element={<ViewProduct user={user} />} />
-        <Route path="/pay/:prodname" element={<PayOrder user={user} seller={seller} setSeller={setSeller} setUser={setUser}/>} />
+        <Route path="/" element={<Home user={user} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/login" element={<Login setUser={setUser} user={user} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/register" element={<Register loading={loading} setLoading={setLoading}/>} />
+        <Route path="/prod_ins" element={<ProdIns user={user} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/dashboard" element={<Dashboard user={user} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/userUpdate" element={<UserUpdate user={user} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/viewInfo" element={<ViewInfo user={user} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/SoldProduct" element={<SoldProducts user={user} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/products_dir" element={<ProductsDir user={user} seller={seller} setSeller={setSeller} setUser={setUser} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/products_auc" element={<ProductsAuc user={user} seller={seller} setSeller={setSeller} setUser={setUser} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/viewProd/:prodname" element={<ViewProduct user={user} loading={loading} setLoading={setLoading}/>} />
+        <Route path="/pay/:prodname" element={<PayOrder user={user} seller={seller} setSeller={setSeller} setUser={setUser} loading={loading} setLoading={setLoading}/>} />
       </Routes>
     </div>
   );
