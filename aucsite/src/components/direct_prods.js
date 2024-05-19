@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import Loading from "./loading";
 
-const ProductsDir = ({ user, setUser, seller, setSeller,loading,setLoading }) => {
+const ProductsDir = ({ user, setUser, seller, setSeller }) => {
   const [allProductDetails, setAllProductDetails] = useState([]);
   const [error, setError] = useState(null);
   const currUser = user;
@@ -20,18 +19,13 @@ const ProductsDir = ({ user, setUser, seller, setSeller,loading,setLoading }) =>
         );
         setAllProductDetails(response.data);
         console.log(response);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching product details of all products:", error);
         setError(error.message || "Failed to fetch all product details");
       }
     };
     fetchProductDetails();
-  }, [setLoading,user]);
-
-  if (loading) {
-    return <Loading />;
-  }
+  }, []);
 
   return (
     <div className="container-fluid">

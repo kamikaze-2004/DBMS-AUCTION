@@ -3,13 +3,12 @@ import React from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Loading from "./loading";
 //const orderId=generateUniqueId({length:10,useLetters:true,useNumbers:true});
 
 //console.log(orderId);
-export default function PayOrder({ user, setUser, seller, setSeller,loading,setLoading }) {
+export default function PayOrder({ user, setUser, seller, setSeller }) {
   //const [orderId, setOrderId] = useState('');
   const prodname = useParams().prodname;
   const navigate = useNavigate();
@@ -17,20 +16,12 @@ export default function PayOrder({ user, setUser, seller, setSeller,loading,setL
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const check = 1234;
 
   const price = queryParams.get("price");
 
   console.log("product name:", prodname);
   console.log("price:", price);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000); // Simulate loading delay
-    return () => clearTimeout(timer);
-  }, [setLoading]);
-
-  if (loading) {
-    return <Loading />;
-  }
 
   const handleOrderNow = async () => {
     try {

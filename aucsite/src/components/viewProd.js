@@ -1,11 +1,11 @@
-// src/components/ViewProduct.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from "react-router-dom";
-import Loading from "./loading";
 
-export default function ViewProduct({ user, loading, setLoading }) {
-  const { prodname } = useParams();
+export default function ViewProduct({ user }) {
+  const pname  = useParams().prodname;
+  console.log("pname:",pname);
   const [prod, setProd] = useState(null);
   const [error, setError] = useState(null);
   const [raise, setRaise] = useState(false);
@@ -13,22 +13,24 @@ export default function ViewProduct({ user, loading, setLoading }) {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/user/products/${prodname}`);
+        const response = await axios.get(
+          `http://localhost:3001/user/products/${pname}`
+        );
         setProd(response.data);
-        setLoading(false); // Set loading to false after fetching
+        console.log("product details:",prod);
       } catch (error) {
         console.error("Error fetching product details:", error);
-        setError(error.message || "Failed to fetch the specific product details");
-        setLoading(false); // Set loading to false on error as well
+        setError(
+          error.message || "Failed to fetch the specific product details"
+        );
       }
     };
-
     fetchProductDetails();
-  }, [prodname, setLoading]);
+  },[]);
 
-  if (loading) {
-    return <Loading />;
-  }
+  const onRaise = () => {
+    setRaise(!raise);
+  };
 
   if (error) {
     return (
@@ -38,9 +40,9 @@ export default function ViewProduct({ user, loading, setLoading }) {
     );
   }
 
-  const onRaise = () => {
-    setRaise(!raise);
-  };
+  if (!prod) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container mt-5">
