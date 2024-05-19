@@ -65,7 +65,7 @@ function UserUpdate({ user }) {
     try {
       console.log("data:", formData);
       const response = await axios.post(
-       ` http://localhost:3000/user/userUpdate/${user}`,
+       ` http://localhost:3001/user/userUpdate/${user}`,
         formData
       );
       console.log("User updated successfully:", response.data);

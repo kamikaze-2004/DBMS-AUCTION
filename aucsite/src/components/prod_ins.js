@@ -471,6 +471,7 @@ export default function ProdIns({ user }) {
                 {saleType === "direct" && (
                   <div>
                     <div className="mb-3">
+<<<<<<< Updated upstream
                       <label htmlFor="email" className="form-label">
                         Email address
                       </label>
@@ -483,6 +484,10 @@ export default function ProdIns({ user }) {
                         value={formData.email}
                         onChange={handleChange}
                       />
+=======
+                      <label htmlFor="email" className="form-label">Email address</label>
+                      <input type="email" className="form-control " id="email" placeholder="Enter email" name="email" value={formData.email} onChange={handleChange} />
+>>>>>>> Stashed changes
                     </div>
                     <div className="mb-3">
                       <label htmlFor="password" className="form-label">
@@ -534,6 +539,7 @@ export default function ProdIns({ user }) {
                 {saleType === "auction" && (
                   <div>
                     <div className="mb-3">
+<<<<<<< Updated upstream
                       <label htmlFor="email" className="form-label">
                         Email address
                       </label>
@@ -546,6 +552,10 @@ export default function ProdIns({ user }) {
                         value={formData.email}
                         onChange={handleChange}
                       />
+=======
+                      <label htmlFor="email" className="form-label">Email address</label>
+                      <input type="email" className="form-control " id="email" placeholder="Enter email" name="email" value={formData.email} onChange={handleChange} />
+>>>>>>> Stashed changes
                     </div>
                     <div className="mb-3">
                       <label htmlFor="password" className="form-label">
