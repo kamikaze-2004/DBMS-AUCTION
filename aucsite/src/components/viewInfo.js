@@ -1,80 +1,86 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 function ViewInfo({ user }) {
   const [loading, setLoading] = useState(true);
-  const [error, SetError] = useState(null);
-  const [userData, SetUserData] = useState(null);
+  const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3001/user/${user}`
-        );
-        SetUserData(response.data);
+        const response = await axios.get(`http://localhost:3001/user/${user}`);
+        setUserData(response.data);
         setLoading(false);
       } catch (err) {
-        SetError(err.message);
+        setError(err.message);
         setLoading(false);
       }
     };
     getUserData();
   }, [user]);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
-  if(!userData) return null;
-  console.log(user);
+  if (!userData) return null;
 
-  return(
-    <div className="mx-5">
-        <h1>{user}-details</h1>
-        <table>
-            <tbody>
+  return (
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <div className="border p-4">
+            <h1 className="text-center">{user} Details</h1>
+            <table className="table">
+              <tbody>
                 <tr>
-                    <td>Username</td>
-                    <td>{userData.username}</td>
+                  <td>Username</td>
+                  <td>{userData.username}</td>
                 </tr>
                 <tr>
-                    <td>password</td>
-                    <td>{userData.password}</td>
+                  <td>Password</td>
+                  <td>{userData.password}</td>
                 </tr>
                 <tr>
-                    <td>email</td>
-                    <td>{userData.email}</td>
+                  <td>Email</td>
+                  <td>{userData.email}</td>
                 </tr>
                 <tr>
-                    <td>FirstName</td>
-                    <td>{userData.firstname}</td>
+                  <td>First Name</td>
+                  <td>{userData.firstname}</td>
                 </tr>
                 <tr>
-                    <td>Lastname</td>
-                    <td>{userData.lastname}</td>
+                  <td>Last Name</td>
+                  <td>{userData.lastname}</td>
                 </tr>
                 <tr>
-                    <td>Address</td>
-                    <td>{userData.address}</td>
+                  <td>Address</td>
+                  <td>{userData.address}</td>
                 </tr>
                 <tr>
-                    <td>Secondary Address</td>
-                    <td>{userData.address2}</td>
+                  <td>Secondary Address</td>
+                  <td>{userData.address2}</td>
                 </tr>
                 <tr>
-                    <td>city</td>
-                    <td>{userData.city}</td>
+                  <td>City</td>
+                  <td>{userData.city}</td>
                 </tr>
                 <tr>
-                    <td>State</td>
-                    <td>{userData.state}</td>
+                  <td>State</td>
+                  <td>{userData.state}</td>
                 </tr>
-
-            </tbody>
-        </table>
-       <Link to='/userUpdate'> <button className="btn btn-primary mx-5">Update Info</button></Link>
+              </tbody>
+            </table>
+            <div className="text-center">
+              <Link to="/userUpdate" className="btn btn-primary">
+                Update Info
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default ViewInfo;

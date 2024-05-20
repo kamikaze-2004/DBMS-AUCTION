@@ -35,7 +35,7 @@ export default function Header({ user }) {
           <Link to="/register" className="px-2 text-white">
             Register
           </Link>
-          <Dropdown>
+          {user && <Dropdown>
             <Dropdown.Toggle
               variant="success"
               id="dropdown-basic"
@@ -71,7 +71,7 @@ export default function Header({ user }) {
               </Dropdown.Item>{" "}
               {/* Added text-white class */}
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown>}
         </div>
       </div>
     </nav>

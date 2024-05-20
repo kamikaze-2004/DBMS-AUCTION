@@ -7,7 +7,7 @@ import Header from "./Header";
 import ProdIns from "./components/prod_ins";
 import Dashboard from "./components/dashboard";
 import ViewInfo from "./components/viewInfo";
-import SoldProducts from "./components/SoldProduct";
+import SoldProducts from "./components/saleproducts";
 import PayOrder from "./components/Pay";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
@@ -15,6 +15,8 @@ import { ToastContainer } from "react-toastify";
 import ProductsDir from "./components/direct_prods";
 import ProductsAuc from "./components/auction_prods";
 import ViewProduct from "./components/viewProd";
+import ViewDirOrder from "./components/viewOrders";
+import ViewAucOrder from "./components/viewAucOrders";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -31,6 +33,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard user={user} />} />
         <Route path="/userUpdate" element={<UserUpdate user={user} />} />
         <Route path="/viewInfo" element={<ViewInfo user={user} />} />
+        <Route path="/viewdirOrders" element={<ViewDirOrder user={user} />} />
+        <Route path="/viewaucOrders" element={<ViewAucOrder user={user} />} />
         <Route path="/SoldProduct" element={<SoldProducts user={user} />} />
         <Route path="/products_dir" element={<ProductsDir user={user} seller={seller} setSeller={setSeller} setUser={setUser}/>} />
         <Route path="/products_auc" element={<ProductsAuc user={user} seller={seller} setSeller={setSeller} setUser={setUser}/>} />
