@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function ViewProduct({ user }) {
-  const pname  = useParams().prodname;
-  console.log("pname:",pname);
+  const { prodname: pname } = useParams();
   const [prod, setProd] = useState(null);
   const [error, setError] = useState(null);
   const [raise, setRaise] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -17,19 +17,23 @@ export default function ViewProduct({ user }) {
           `http://localhost:3001/user/products/${pname}`
         );
         setProd(response.data);
-        console.log("product details:",prod);
+        console.log("product details:", response.data);
       } catch (error) {
         console.error("Error fetching product details:", error);
-        setError(
-          error.message || "Failed to fetch the specific product details"
-        );
+        setError(error.message || "Failed to fetch the specific product details");
       }
     };
     fetchProductDetails();
-  },[]);
+  }, [pname]);
 
   const onRaise = () => {
     setRaise(!raise);
+  };
+
+  const handleBuy = () => {
+    if (prod) {
+      navigate(`/pay/${prod.prod_name}?price=${prod.price}`);
+    }
   };
 
   if (error) {
@@ -91,7 +95,11 @@ export default function ViewProduct({ user }) {
                   )}
                 </div>
               )}
-              <button className="btn btn-success mt-3">Buy</button>
+              {prod.sale_type !== "auction" && (
+                <button className="btn btn-success mt-3" onClick={handleBuy}>
+                  Buy
+                </button>
+              )}
             </div>
           </div>
         </div>

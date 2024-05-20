@@ -92,3 +92,7 @@ export default function PayOrder({ user, setUser, seller, setSeller }) {
     </div>
   );
 }
+
+
+
+
