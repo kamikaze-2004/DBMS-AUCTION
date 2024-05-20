@@ -377,7 +377,7 @@ export default function ProdIns({ user }) {
    // offdoc:null,
     password: "",
     price: "",
-    prod_id: new_id,
+    prod_id: null,
     y_o_u: null,
     sale_type: "direct",
     duration: null,
