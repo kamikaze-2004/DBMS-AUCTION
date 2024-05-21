@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
+import '../styles/tailwind.css';
 import '../styles/auction_prods.css'; // Import the custom CSS file
 
 const ProductsAuc = ({ user }) => {
@@ -18,8 +18,8 @@ const ProductsAuc = ({ user }) => {
 
   const currUser = user;
 
-  function onView(pname) {
-    navigate(`/viewProd/${pname}`);
+  function onView(prod_name) {
+    navigate(`/viewProd/${prod_name}`);
   }
 
   useEffect(() => {
@@ -140,9 +140,9 @@ const ProductsAuc = ({ user }) => {
     return product.highest_bidder === currUser;
   };
 
-  const handleBidChange = (event, product_id) => {
+  const handleBidChange = (event, prod_id) => {
     const newBidAmount = event.target.value;
-    setBidAmount({ ...bidAmount, [product_id]: newBidAmount });
+    setBidAmount({ ...bidAmount, [prod_id]: newBidAmount });
   };
 
   const handleBidSubmit = async (event, product) => {
@@ -176,136 +176,122 @@ const ProductsAuc = ({ user }) => {
   };
 
   return (
-    <div className="container-fluid">
-      <h2>Product Details</h2>
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-black to-blue-800 text-white py-8 px-4 overflow-y-auto">
+      <h2 className="text-3xl font-bold text-center mb-8">Product Details</h2>
       {error ? (
-        <div className="alert alert-danger" role="alert">
+        <div className="bg-red-500 text-white p-4 rounded-md text-center">
           {error}
         </div>
       ) : allProductDetails.length === 0 ? (
-        <p>No Products available currently!</p>
+        <p className="text-center text-xl">No Products available currently!</p>
       ) : (
-        <div className="row">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {allProductDetails.map((product, index) => (
-            <div className="col-md-3 mb-3" key={product.prod_name}>
-              <div className="card text-dark bg-light h-100">
-                {product.image_paths && (
-                  <div
-                    id={`carousel-${index}`}
-                    className="carousel slide"
-                    data-bs-ride="carousel"
-                    ref={(ref) => (carouselRefs.current[index] = ref)}
-                  >
-                    <div className="carousel-inner">
-                      {product.image_paths.split(',').map((image, imgIndex) => (
-                        <div
-                          key={imgIndex}
-                          className={`carousel-item ${
-                            imgIndex === 0 ? 'active' : ''
-                          }`}
-                        >
-                          <img
-                            src={`http://localhost:3001/${image.trim()}`}
-                            className="d-block w-100 card-img-top"
-                            alt={`Product ${imgIndex + 1}`}
-                            onClick={() =>
-                              openModal(
-                                `http://localhost:3001/${image.trim()}`
-                              )
-                            }
-                          />
-                        </div>
-                      ))}
-                    </div>
-                    <button
-                      className="carousel-control-prev"
-                      type="button"
-                      data-bs-target={`#carousel-${index}`}
-                      data-bs-slide="prev"
-                      onClick={() => handlePrev(index)}
-                    >
-                      <span className="carousel-control-prev-icon"></span>
-                      <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button
-                      className="carousel-control-next"
-                      type="button"
-                      data-bs-target={`#carousel-${index}`}
-                      data-bs-slide="next"
-                      onClick={() => handleNext(index)}
-                    >
-                      <span className="carousel-control-next-icon"></span>
-                      <span className="visually-hidden">Next</span>
-                    </button>
+            <div
+              key={product.prod_id}
+              className="bg-white text-black rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              {product.image_paths && (
+                <div
+                  id={`carousel-${index}`}
+                  className="relative carousel slide"
+                  data-bs-ride="carousel"
+                  ref={(ref) => (carouselRefs.current[index] = ref)}
+                >
+                  <div className="carousel-inner">
+                    {product.image_paths.split(',').map((image, imgIndex) => (
+                      <div
+                        key={imgIndex}
+                        className={`carousel-item ${imgIndex === 0 ? 'active' : ''}`}
+                      >
+                        <img
+                          src={`http://localhost:3001/${image.trim()}`}
+                          className="w-full h-64 object-cover"
+                          alt={`Product ${imgIndex + 1}`}
+                          onClick={() => openModal(`http://localhost:3001/${image.trim()}`)}
+                        />
+                      </div>
+                    ))}
                   </div>
-                )}
-                <div className="card-body">
-                  <h5 className="card-title">{product.prod_name}</h5>
-                  <p className="card-text">Username: {product.username}</p>
-                  <p className="card-text">Price: Rs.{product.price}</p>
-                  <p className="card-text">
-                    Current Bid: Rs.{product.curr_bid}
-                  </p>
-                  <p className="card-text">
-                    Years of Usage: {product.y_o_u ? product.y_o_u : "Not mentioned"}
-                  </p>
-                  <p className={`card-text ${remainingTime[product.prod_id] === 'Auction Ended' ? 'timer-ended' : 'timer'}`}>
-                    Auction End Time: {remainingTime[product.prod_id] || 'Calculating...'}
-                  </p>
-                  <div>
+                  <button
+                    className="carousel-control-prev absolute top-1/2 transform -translate-y-1/2 left-0"
+                    type="button"
+                    data-bs-target={`#carousel-${index}`}
+                    data-bs-slide="prev"
+                    onClick={() => handlePrev(index)}
+                  >
+                    <span className="carousel-control-prev-icon bg-black bg-opacity-50 rounded-full p-2"></span>
+                    <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    className="carousel-control-next absolute top-1/2 transform -translate-y-1/2 right-0"
+                    type="button"
+                    data-bs-target={`#carousel-${index}`}
+                    data-bs-slide="next"
+                    onClick={() => handleNext(index)}
+                  >
+                    <span className="carousel-control-next-icon bg-black bg-opacity-50 rounded-full p-2"></span>
+                    <span className="visually-hidden">Next</span>
+                  </button>
+                </div>
+              )}
+              <div className="p-4">
+              <h5 className="text-2xl font-bold mb-2"> {product.car_brand+" "+product.car_model}</h5>
+               
+                <p className="text-gray-600 mb-2">Username: {product.username}</p>
+                <p className="text-gray-600 mb-2">Price: Rs.{product.price}</p>
+                <p className="text-gray-600 mb-2">Current Bid: Rs.{product.curr_bid}</p>
+                <p className="text-gray-600 mb-2">Years of Usage: {product.y_o_u ? product.y_o_u : "Not mentioned"}</p>
+                <p className={`mb-2 ${remainingTime[product.prod_id] === 'Auction Ended' ? 'text-red-600' : 'text-green-600'}`}>
+                  Time Remaining: {remainingTime[product.prod_id]}
+                </p>
+                {raiseIndex === index && !isAuctionEnded(product) ? (
+                  <form onSubmit={(event) => handleBidSubmit(event, product)} className="mt-2">
+                    <div className="flex items-center">
+                      <input
+                        type="number"
+                        className="border border-gray-400 rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        value={bidAmount[product.prod_id] || ''}
+                        onChange={(event) => handleBidChange(event, product.prod_id)}
+                        min={product.curr_bid * 1.1}
+                      />
+                      <button
+                        type="submit"
+                        className="bg-blue-600 text-white rounded-r px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      >
+                        Submit Bid
+                      </button>
+                    </div>
+                  </form>
+                ) : isAuctionEnded(product) ? (
+                  <p className="text-red-600">Auction has ended</p>
+                ) : (
+                  <>
                     <button
-                      className="btn btn-primary mx-1"
                       onClick={() => onRaise(index)}
+                      className="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 mt-2"
                     >
                       Raise Bid
                     </button>
-                    {raiseIndex === index && (
-                      <form onSubmit={(event) => handleBidSubmit(event, product)}>
-                        <div className="mt-2">
-                          <label htmlFor="raise">
-                            Enter your bid (new bid must be at least 10% higher than the current bid):
-                          </label>
-                          <input
-                            type="number"
-                            id="raise"
-                            className="form-control mt-1 bg-light"
-                            value={bidAmount[product.prod_id] || ''}
-                            onChange={(event) => handleBidChange(event, product.prod_id)}
-                          />
-                          <button type="submit" className="btn btn-success mt-2">
-                            Submit Bid
-                          </button>
-                        </div>
-                      </form>
-                    )}
-                  </div>
-                  {isAuctionEnded(product) && isHighestBidder(product) && (
-                    <button
-                      className="btn btn-success mt-3"
-                      onClick={() => navigate(`/pay/${product.prod_name}`)}
-                    >
-                      Pay
-                    </button>
-                  )}
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => onView(product.prod_name)}
-                  >
-                    View Product Details
-                  </button>
-                </div>
+                  </>
+                )}
+                {isHighestBidder(product) && (
+                  <p className="text-green-600 mt-2">You are the highest bidder!</p>
+                )}
+                <button
+                  onClick={() => onView(product.prod_id)}
+                  className="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 mt-2"
+                >
+                  View
+                </button>
               </div>
             </div>
           ))}
         </div>
       )}
-      <Modal show={modalShow} onHide={closeModal} centered size="xl">
+      <Modal show={modalShow} onHide={closeModal} centered>
         <Modal.Body>
-          <img
-            src={selectedImage}
-            alt="Full Screen"
-            style={{ width: "100%", height: "auto" }}
-          />
+          <img src={selectedImage} alt="Selected" className="w-full" />
         </Modal.Body>
       </Modal>
     </div>

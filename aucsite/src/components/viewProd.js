@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams, useNavigate } from "react-router-dom";
+import "../styles/tailwind.css";
 
 export default function ViewProduct({ user }) {
-  const { prodname: pname } = useParams();
+  const { prodname: pid } = useParams();
   const [prod, setProd] = useState(null);
   const [error, setError] = useState(null);
   const [raise, setRaise] = useState(false);
@@ -14,7 +14,7 @@ export default function ViewProduct({ user }) {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/user/products/${pname}`
+          `http://localhost:3001/user/products/${pid}`
         );
         setProd(response.data);
         console.log("product details:", response.data);
@@ -24,7 +24,7 @@ export default function ViewProduct({ user }) {
       }
     };
     fetchProductDetails();
-  }, [pname]);
+  }, [pid]);
 
   const onRaise = () => {
     setRaise(!raise);
@@ -38,7 +38,7 @@ export default function ViewProduct({ user }) {
 
   if (error) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="bg-red-500 text-white p-4 rounded" role="alert">
         {error}
       </div>
     );
@@ -48,55 +48,87 @@ export default function ViewProduct({ user }) {
     return <div>Loading...</div>;
   }
 
+  const auctionEndTime = new Date(prod.createdAt);
+  auctionEndTime.setHours(auctionEndTime.getHours() + prod.duration);
+  const currentTime = new Date();
+  const remainingTime = auctionEndTime - currentTime;
+  const isAuctionEnded = currentTime > auctionEndTime;
+
+  // Format the remaining time
+  let remainingTimeString;
+  if (remainingTime > 0) {
+    const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+    const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+    remainingTimeString = `Ends in ${hours} hrs ${minutes} min ${seconds} sec`;
+  } else {
+    remainingTimeString = "Auction has ended";
+  }
+
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8">
-          <div className="card text-dark bg-light h-100">
-            <div className="card-header">
-              <h3 className="card-title">{prod.prod_name}</h3>
+    <div className="container mx-auto p-6">
+      <div className="flex justify-center">
+        <div className="w-full max-w-lg">
+          <div className="bg-white shadow-md rounded-lg overflow-hidden">
+            <div className="bg-gray-800 text-white p-4">
+              <h3 className="text-xl">{prod.car_brand+" "+prod.car_model}</h3>
             </div>
-            <div className="card-body">
+            <div className="p-4">
               {prod.image_url && (
                 <div className="text-center mb-3">
                   <img
                     src={prod.image_url}
                     alt={prod.prod_name}
-                    className="img-fluid"
-                    style={{ maxHeight: "300px" }}
+                    className="w-full max-h-64 object-contain"
                   />
                 </div>
               )}
-              <p className="card-text">Username: {prod.username}</p>
-              <p className="card-text">Price: Rs.{prod.price}</p>
-              <p className="card-text">
+              <p className="text-gray-700">Username: {prod.username}</p>
+              
+              <p className="text-gray-700">Price: Rs.{prod.price}</p>
+              <p className="text-gray-700">
                 Years of Usage: {prod.y_o_u ? prod.y_o_u : "Not mentioned"}
               </p>
               {prod.sale_type === "auction" && (
                 <div>
-                  <p className="card-text">
-                    Auction End Time: Ends in {prod.duration} days
+                  <p className="text-gray-700">
+                    Auction End Time: {remainingTimeString}
                   </p>
-                  <button className="btn btn-primary mx-1" onClick={onRaise}>
-                    Raise Bid
-                  </button>
+                  {!isAuctionEnded && (
+                    <button
+                      className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 mt-2"
+                      onClick={onRaise}
+                    >
+                      Raise Bid
+                    </button>
+                  )}
                   {raise && (
                     <div className="mt-2">
-                      <label htmlFor="raise">
-                        Enter your bid (new bid must be at least 10% higher than
-                        the current bid):
+                      <label htmlFor="raise" className="block text-gray-700">
+                        Enter your bid (new bid must be at least 10% higher than the current bid):
                       </label>
                       <input
                         type="number"
                         id="raise"
-                        className="form-control mt-1 bg-light"
+                        className="mt-1 p-2 border rounded w-full"
                       />
                     </div>
+                  )}
+                  {isAuctionEnded && prod.highest_bidder === user && (
+                    <button
+                      className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 mt-2"
+                      onClick={handleBuy}
+                    >
+                      Pay
+                    </button>
                   )}
                 </div>
               )}
               {prod.sale_type !== "auction" && (
-                <button className="btn btn-success mt-3" onClick={handleBuy}>
+                <button
+                  className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 mt-2"
+                  onClick={handleBuy}
+                >
                   Buy
                 </button>
               )}

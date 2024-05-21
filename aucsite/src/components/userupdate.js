@@ -4,7 +4,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom/dist";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import '/Users/amvis/Desktop/DBMS-Auction/DBMS-AUCTION/aucsite/src/login.css'; // Assuming you have your custom styles in this file
 
 const stateCityData = {
   "Tamil Nadu":["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Vellore", "Erode", "Thoothukudi", "Dindigul", "Thanjavur", "Ranipet", "Sivakasi", "Karur", "Udhagamandalam (Ooty)", "Hosur", "Nagercoil", "Kanchipuram", "Kumbakonam", "Tiruvannamalai"],
@@ -34,7 +33,7 @@ const stateCityData = {
 "Uttar Pradesh":["Lucknow", "Kanpur", "Ghaziabad", "Agra", "Varanasi", "Meerut", "Allahabad (Prayagraj)", "Bareilly", "Aligarh", "Moradabad", "Saharanpur", "Gorakhpur", "Noida", "Firozabad", "Jhansi", "Muzaffarnagar", "Mathura", "Rampur", "Shahjahanpur", "Faizabad (Ayodhya)"],
 "Maharashtra":["Mumbai", "Pune", "Nagpur", "Thane", "Nashik", "Aurangabad", "Solapur", "Amravati", "Kolhapur", "Akola", "Jalgaon", "Latur", "Dhule", "Ahmednagar", "Chandrapur", "Parbhani", "Ichalkaranji", "Sangli-Miraj & Kupwad", "Nanded", "Malegaon"],
 "West Bengal":["Kolkata", "Asansol", "Siliguri", "Durgapur", "Bardhaman", "Malda", "Kharagpur", "Jalpaiguri", "Haldia", "Baharampur", "Habra", "Krishnanagar", "Shantipur", "Dankuni", "Raniganj", "Bhatpara", "Chandannagar", "Hugli-Chinsurah", "Uttarpara Kotrung", "Balurghat"],
-"Sikkim":["Gangtok", "Namchi", "Mangan", "Jorethang", "Rangpo", "Gyalshing", "Singtam", "Ravangla", "Soreng", "Rhenock", "Nayabazar"]
+"Sikkim":["Gangtok", "Namchi", "Mangan", "Jorethang", "Rangpo", "Gyalshing", "Singtam", "Ravangla", "Soreng", "Rhenock", "Nayabazar"]
 }
 function UserUpdate({ user }) {
   const [formData, setFormData] = useState({
@@ -65,7 +64,7 @@ function UserUpdate({ user }) {
     try {
       console.log("data:", formData);
       const response = await axios.post(
-       ` http://localhost:3000/user/userUpdate/${user}`,
+        `http://localhost:3001/user/userUpdate/${user}`,
         formData
       );
       console.log("User updated successfully:", response.data);
@@ -80,20 +79,18 @@ function UserUpdate({ user }) {
   };
 
   return (
-    <div className="container-fluid bg-light text-dark">
-      <h1 className="text-black text-center">Update Info {user}</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-black to-blue-800 text-white py-8 px-4 overflow-y-auto">
+      <h1 className="text-center text-3xl font-bold mb-8">Update Info {user}</h1>
       <form
-        className="row justify-content-center mt-3 mx-auto w-75 text-start"
+        className="bg-white text-black rounded-lg shadow-lg p-8 max-w-2xl mx-auto transition-all duration-300 transform hover:scale-105"
         onSubmit={handleSubmit}
       >
-        <div className="form-row">
-          <div className="form-group col-md-6 mb-3">
-            <label htmlFor="inputEmail4" className="font-weight-bold font-italic">
-              Email
-            </label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-4">
+            <label htmlFor="inputEmail4" className="block font-semibold mb-2">Email</label>
             <input
               type="email"
-              className="form-control"
+              className="w-full p-2 border border-gray-300 rounded-md"
               id="inputEmail4"
               placeholder="Email"
               value={formData.email}
@@ -101,11 +98,11 @@ function UserUpdate({ user }) {
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-6 mb-3">
-            <label htmlFor="inputPassword4">Password</label>
+          <div className="mb-4">
+            <label htmlFor="inputPassword4" className="block font-semibold mb-2">Password</label>
             <input
               type="password"
-              className="form-control"
+              className="w-full p-2 border border-gray-300 rounded-md"
               id="inputPassword4"
               placeholder="Password"
               value={formData.password}
@@ -114,35 +111,35 @@ function UserUpdate({ user }) {
             />
           </div>
         </div>
-        <div className="form-group mb-3">
-          <label htmlFor="inputFirstName">FirstName</label>
+        <div className="mb-4">
+          <label htmlFor="inputFirstName" className="block font-semibold mb-2">First Name</label>
           <input
             type="text"
-            className="form-control"
+            className="w-full p-2 border border-gray-300 rounded-md"
             id="inputFirstName"
-            placeholder="FirstName"
+            placeholder="First Name"
             value={formData.firstname}
             name="firstname"
             onChange={handleChange}
           />
         </div>
-        <div className="form-group mb-3">
-          <label htmlFor="inputLastName">LastName</label>
+        <div className="mb-4">
+          <label htmlFor="inputLastName" className="block font-semibold mb-2">Last Name</label>
           <input
             type="text"
-            className="form-control"
+            className="w-full p-2 border border-gray-300 rounded-md"
             id="inputLastName"
-            placeholder="LastName"
+            placeholder="Last Name"
             value={formData.lastname}
             name="lastname"
             onChange={handleChange}
           />
         </div>
-        <div className="form-group mb-3">
-          <label htmlFor="inputContact">Contact No</label>
+        <div className="mb-4">
+          <label htmlFor="inputContact" className="block font-semibold mb-2">Contact No</label>
           <input
             type="tel"
-            className="form-control"
+            className="w-full p-2 border border-gray-300 rounded-md"
             id="inputContact"
             placeholder="(+91) XXXXXXXXXX"
             name="contact"
@@ -150,11 +147,11 @@ function UserUpdate({ user }) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group mb-3">
-          <label htmlFor="inputAddress">Address</label>
+        <div className="mb-4">
+          <label htmlFor="inputAddress" className="block font-semibold mb-2">Address</label>
           <input
             type="text"
-            className="form-control"
+            className="w-full p-2 border border-gray-300 rounded-md"
             id="inputAddress"
             placeholder="1234 Main St"
             value={formData.address}
@@ -162,11 +159,11 @@ function UserUpdate({ user }) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group mb-3">
-          <label htmlFor="inputAddress2">Address 2</label>
+        <div className="mb-4">
+          <label htmlFor="inputAddress2" className="block font-semibold mb-2">Address 2</label>
           <input
             type="text"
-            className="form-control"
+            className="w-full p-2 border border-gray-300 rounded-md"
             id="inputAddress2"
             placeholder="Apartment, studio, or floor"
             value={formData.address2}
@@ -174,12 +171,12 @@ function UserUpdate({ user }) {
             onChange={handleChange}
           />
         </div>
-        <div className="form-row mb-3">
-          <div className="form-group col-md-6 mb-3">
-            <label htmlFor="inputState">State</label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-4">
+            <label htmlFor="inputState" className="block font-semibold mb-2">State</label>
             <select
               id="inputState"
-              className="form-control"
+              className="w-full p-2 border border-gray-300 rounded-md"
               value={formData.state}
               name="state"
               onChange={handleStateChange}
@@ -190,11 +187,11 @@ function UserUpdate({ user }) {
               ))}
             </select>
           </div>
-          <div className="form-group col-md-6 mb-3">
-            <label htmlFor="inputCity">City</label>
+          <div className="mb-4">
+            <label htmlFor="inputCity" className="block font-semibold mb-2">City</label>
             <select
               id="inputCity"
-              className="form-control"
+              className="w-full p-2 border border-gray-300 rounded-md"
               value={formData.city}
               name="city"
               onChange={handleChange}
@@ -207,32 +204,23 @@ function UserUpdate({ user }) {
             </select>
           </div>
         </div>
-        <div className="form-row mb-3">
-          <div className="form-group col-md-6 mb-3">
-            <label htmlFor="inputZip">Zip</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputZip"
-              value={formData.zipcode}
-              name="zipcode"
-              onChange={handleChange}
-            />
-          </div>
+        <div className="mb-4">
+          <label htmlFor="inputZip" className="block font-semibold mb-2">Zip</label>
+          <input
+            type="text"
+            className="w-full p-2 border border-gray-300 rounded-md"
+            id="inputZip"
+            value={formData.zipcode}
+            name="zipcode"
+            onChange={handleChange}
+          />
         </div>
-        <div className="form-group">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="gridCheck"
-            />
-            <label className="form-check-label" htmlFor="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div>
-        <button type="submit" className="btn btn-primary mb-5 w-25">
+       
+        
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white p-2 rounded-md shadow-md hover:bg-blue-700 transition-all duration-300"
+        >
           Update
         </button>
       </form>

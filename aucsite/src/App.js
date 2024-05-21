@@ -1,4 +1,6 @@
 import "./styles/index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/tailwind.css";
 import Login from "./components/login";
 import Register from "./components/register";
 import UserUpdate from "./components/userupdate";
