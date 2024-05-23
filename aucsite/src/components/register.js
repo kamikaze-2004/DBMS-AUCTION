@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom/dist";
 
-//import '/Users/amvis/Desktop/DBMS-Auction/DBMS-AUCTION/aucsite/src/login.css'; // Assuming you have your custom styles in this file
+
 
 function Register() {
 
@@ -32,17 +32,18 @@ function Register() {
     }
   };
   return (
-    <div className="containter-fluid  bg-light text-dark mt-5">
-      <h1 className="text-black text-center ">Register</h1>
+    <div className="h-[calc(100vh-90.41px)] bg-gradient-to-br from-blue-900 via-black to-blue-800 text-white py-8 px-4 w-full">
+    <div className="w-3/5 max-w-xl mx-auto bg-blue-800  p-4 rounded-2xl">
+      <h1 className="text-white text-center text-bold text-3xl  ">Sign up</h1>
       <form 
-        className="row justify-content-center mt-3 w-50 text-start formwidth  "
+        className="row justify-content-center mt-3 w-full text-start formwidth mx-auto "
         onSubmit={handleSubmit}
       >
         <div className="form-group mb-3 ">
           <label htmlFor="inputUserName">Username</label>
           <input
             type="text"
-            className="form-control w-50"
+            className="form-control "
             id="inputUserName"
             placeholder="UserName"
             name="username"
@@ -51,7 +52,7 @@ function Register() {
           />
         </div>
         <div className="form-row ">
-          <div className="form-group col-md-6 mb-3">
+          <div className="form-group  mb-3">
             <label
               htmlFor="inputEmail4"
               className="font-weight-bold font-italic"
@@ -61,19 +62,24 @@ function Register() {
             <input
               type="email"
               className="form-control"
+              
               id="inputEmail4"
               placeholder="Email"
+              pattern="/^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/"
+              required
               value={formData.email}
               name="email"
               onChange={handleChange}
             />
           </div>
-          <div className="form-group col-md-6 mb-3 r">
+          <div className="form-group  mb-3 r">
             <label htmlFor="inputPassword4">Password</label>
             <input
               type="password"
               className="form-control"
               id="inputPassword4"
+              // pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" 
+              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required
               placeholder="Password"
               value={formData.password}
               name="password"
@@ -95,10 +101,11 @@ function Register() {
           </div>
         </div>
             */}
-        <button type="submit" className="btn btn-primary mb-5 w-25 center ">
-          Register
+        <button type="submit" className="px-4 py-2 rounded-md bg-[#fff] text-blue-600 font-semibold hover:scale-110 hover:bg-black transition-all   mb-2 w-32  ">
+         Sign Up
         </button>
       </form>
+    </div>
     </div>
   );
 }

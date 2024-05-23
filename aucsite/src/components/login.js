@@ -28,83 +28,66 @@ function Login({ setUser }) {
         document.cookie = `username=${username}; expires=${new Date(
           Date.now() + 86400000
         ).toUTCString()}`;
-        setUser(response.data); // Set the user state with the received user object
-        toast.success("login successful user");
-        //{ onClose:()=> navigate("/dashboard") }
-
-        navigate("/dashboard"); // Redirect to the dashboard route
+        setUser(response.data); 
+        toast.success("Login successful!");
+        navigate("/dashboard"); 
       } else {
-        toast.error("login unsuccessful");
+        toast.error("Login unsuccessful. Please check your credentials.");
       }
     } catch (err) {
-      toast.error("login unsuccessful");
+      toast.error("Login unsuccessful. Please try again later.");
       console.error("Error logging in user:", err);
     }
   };
 
   return (
-    <div className="container-fluid text-center">
-      <div className="row justify-content-center mt-5 mx-auto w-75">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-body">
-              <h2 className="text-center mb-4">Login</h2>
-              <form
-                onSubmit={handleSubmit}
-                className="row justify-content-center mt-3 mx-auto w-75 text-start"
-              >
-                <div className="mb-3">
-                  <label htmlFor="username" className="form-label">
-                    Username
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    placeholder="Enter username"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    value={formData.password}
-                    id="password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="mx-3">
-
-                <button
-                  type="submit"
-                  className="block btn btn-primary rounded-pill px-5 m-2 "
-                  >
-                  Login
-                </button>
-                  </div>
-                  <div>
-
-                <button className=" mx-1 btn btn-secondary rounded-pill px-5">
-                <Link
-                  to="/register"
-                  className=" text-light text-decoration-none "
-                  >
-                  Register
-                </Link>
-                </button>
-                  </div>
-              </form>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-black to-blue-800 text-white py-8 px-4 flex items-center justify-center">
+      <div className="w-full max-w-md bg-blue-800 p-6 rounded-2xl shadow-md">
+        <h1 className="text-white text-center font-bold text-3xl mb-4">Login</h1>
+        <form className="w-full" onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="username" className="block text-white mb-2">Username</label>
+            <input
+              type="text"
+              className="w-full px-3 py-2 rounded-md bg-white text-black"
+              id="username"
+              placeholder="Enter username"
+              name="username"
+              required
+              value={formData.username}
+              onChange={handleChange}
+            />
           </div>
-        </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-white mb-2">Password</label>
+            <input
+              type="password"
+              className="w-full px-3 py-2 rounded-md bg-white text-black"
+              id="password"
+              placeholder="Password"
+              name="password"
+              required
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full px-4 py-2 rounded-md bg-white text-blue-600 font-semibold hover:scale-110 hover:bg-black transition-transform mb-4"
+          >
+            Login
+          </button>
+          <div className="text-center">
+            <Link to="/register" className="text-white">
+              <button
+                type="button"
+                className="px-4 py-2 rounded-md bg-gray-700 text-white hover:bg-gray-600 transition"
+              >
+                Register
+              </button>
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );

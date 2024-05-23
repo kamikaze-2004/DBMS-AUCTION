@@ -3,10 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import '../styles/tailwind.css';
-import '../styles/auction_prods.css'; // Import the custom CSS file
+import '../styles/auction_prods.css';
 
 const ProductsAuc = ({ user }) => {
   const [allProductDetails, setAllProductDetails] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState(null);
   const [raiseIndex, setRaiseIndex] = useState(null);
   const [modalShow, setModalShow] = useState(false);
@@ -29,6 +31,7 @@ const ProductsAuc = ({ user }) => {
           `http://localhost:3001/user/products/auction_prods/${user}`
         );
         setAllProductDetails(response.data);
+        setFilteredProducts(response.data);
       } catch (error) {
         console.error('Error fetching product details:', error);
         setError(error.message || 'Failed to fetch product details');
@@ -39,7 +42,7 @@ const ProductsAuc = ({ user }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      allProductDetails.forEach((product, index) => {
+      filteredProducts.forEach((product, index) => {
         if (carouselRefs.current[index]) {
           const carousel = carouselRefs.current[index];
           const nextSlide = carousel.querySelector(
@@ -57,12 +60,12 @@ const ProductsAuc = ({ user }) => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [allProductDetails]);
+  }, [filteredProducts]);
 
   useEffect(() => {
     const updateRemainingTime = () => {
       const newRemainingTime = {};
-      allProductDetails.forEach((product) => {
+      filteredProducts.forEach((product) => {
         const endDate = new Date(product.createdAt);
         endDate.setHours(endDate.getHours() + product.duration);
         const now = new Date();
@@ -81,10 +84,10 @@ const ProductsAuc = ({ user }) => {
     };
 
     updateRemainingTime();
-    const interval = setInterval(updateRemainingTime, 1000); // Update every second
+    const interval = setInterval(updateRemainingTime, 1000); 
 
     return () => clearInterval(interval);
-  }, [allProductDetails]);
+  }, [filteredProducts]);
 
   const onRaise = (index) => {
     setRaiseIndex(raiseIndex === index ? null : index);
@@ -164,6 +167,7 @@ const ProductsAuc = ({ user }) => {
           `http://localhost:3001/user/products/auction_prods/${user}`
         );
         setAllProductDetails(updatedProductDetails.data);
+        setFilteredProducts(updatedProductDetails.data);
       } catch (error) {
         console.error('Error placing bid:', error);
         alert('Failed to place bid.');
@@ -175,18 +179,38 @@ const ProductsAuc = ({ user }) => {
     }
   };
 
+  const handleSearchChange = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+    const filtered = allProductDetails.filter((product) =>
+      (product.car_brand && product.car_brand.toLowerCase().includes(query)) ||
+      (product.username && product.username.toLowerCase().includes(query)) ||
+      (product.price && product.price.toString().includes(query)) ||
+      (product.y_o_u && product.y_o_u.toString().includes(query)) ||
+      (product.duration && product.duration.toString().includes(query))
+    );
+    setFilteredProducts(filtered);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-black to-blue-800 text-white py-8 px-4 overflow-y-auto">
       <h2 className="text-3xl font-bold text-center mb-8">Product Details</h2>
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Search for products..."
+        value={searchQuery}
+        onChange={handleSearchChange}
+      />
       {error ? (
         <div className="bg-red-500 text-white p-4 rounded-md text-center">
           {error}
         </div>
-      ) : allProductDetails.length === 0 ? (
+      ) : filteredProducts.length === 0 ? (
         <p className="text-center text-xl">No Products available currently!</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allProductDetails.map((product, index) => (
+          {filteredProducts.map((product, index) => (
             <div
               key={product.prod_id}
               className="bg-white text-black rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl"
@@ -236,8 +260,7 @@ const ProductsAuc = ({ user }) => {
                 </div>
               )}
               <div className="p-4">
-              <h5 className="text-2xl font-bold mb-2"> {product.car_brand+" "+product.car_model}</h5>
-               
+                <h5 className="text-2xl font-bold mb-2">{product.car_brand + " " + product.car_model}</h5>
                 <p className="text-gray-600 mb-2">Username: {product.username}</p>
                 <p className="text-gray-600 mb-2">Price: Rs.{product.price}</p>
                 <p className="text-gray-600 mb-2">Current Bid: Rs.{product.curr_bid}</p>

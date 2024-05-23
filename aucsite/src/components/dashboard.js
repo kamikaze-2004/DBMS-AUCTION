@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; 
  import "../styles/tailwind.css";
-// Still including Bootstrap if needed
+
 
 function Dashboard({ user }) {
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-blue-900 via-black to-blue-800 overflow-hidden">
-      {/* Stars Layer */}
+      
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
       
       <div className="relative w-full max-w-md bg-white bg-opacity-90 text-center p-8 rounded-lg shadow-lg mx-auto my-10">

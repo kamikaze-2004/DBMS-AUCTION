@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../styles/tailwind.css";
 
 export default function ViewAucOrder({ user }) {
   const [loading, setLoading] = useState(true);
@@ -9,12 +10,9 @@ export default function ViewAucOrder({ user }) {
   useEffect(() => {
     const getUserOrder = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3001/user/getAucOrder/${user}`
-        );
+        const response = await axios.get(`http://localhost:3001/user/getAucOrder/${user}`);
         setUserOrder(response.data);
         setLoading(false);
-        console.log(userOrder);
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -23,45 +21,54 @@ export default function ViewAucOrder({ user }) {
     getUserOrder();
   }, [user]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="text-center text-gray-200">Loading...</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
-    <div className="container-fluid">
-      <h2>Order Details</h2>
-      {error ? (
-        <div className="alert alert-danger" role="alert">
-          {error}
-        </div>
-      ) : userOrder.length === 0 ? (
-        <p>No previous history of orders!</p>
-      ) : (
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Product Name</th>
-              <th>Price</th>
-              <th>Seller Name</th>
-              <th>Purchased Date</th>
-              <th>Payment Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.isArray(userOrder) &&
-              userOrder.map((order) => (
-                <tr key={order.prod_name}>
-                  <td>{order.order_id}</td>
-                  <td>{order.prod_name}</td>
-                  <td>{order.price}</td>
-                  <td>{order.sellername}</td>
-                  <td>{order.purchasedate}</td>
-                  <td>{order.payment_status}</td>
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-black to-blue-800 text-white py-8 px-4 overflow-y-auto">
+      <div className="container mx-auto p-6">
+        <h2 className="text-3xl font-bold mb-6 text-center">Order Details</h2>
+        {error ? (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        ) : userOrder.length === 0 ? (
+          <p className="text-center text-gray-200">No previous history of orders!</p>
+        ) : (
+          <div className="overflow-x-auto shadow-lg rounded-lg">
+            <table className="min-w-full bg-white text-black border border-gray-200 rounded-lg">
+              <thead>
+                <tr className="bg-blue-100 border-b">
+                  <th className="py-3 px-6 text-left">Order ID</th>
+                  <th className="py-3 px-6 text-left">Product Name</th>
+                  <th className="py-3 px-6 text-left">Price</th>
+                  <th className="py-3 px-6 text-left">Seller Name</th>
+                  <th className="py-3 px-6 text-left">Purchased Date</th>
+                  <th className="py-3 px-6 text-left">Payment Status</th>
                 </tr>
-              ))}
-          </tbody>
-        </table>
-      )}
+              </thead>
+              <tbody>
+                {Array.isArray(userOrder) && userOrder.map((order) => (
+                  <tr key={order.prod_name} className="border-b hover:bg-gray-50">
+                    <td className="py-4 px-6">{order.order_id}</td>
+                    <td className="py-4 px-6">{order.prod_name}</td>
+                    <td className="py-4 px-6">{order.price}</td>
+                    <td className="py-4 px-6">{order.sellername}</td>
+                    <td className="py-4 px-6">{order.purchasedate}</td>
+                    <td className="py-4 px-6">
+                      <span className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${
+                        order.payment_status === 'Paid' ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'
+                      }`}>
+                        {order.payment_status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

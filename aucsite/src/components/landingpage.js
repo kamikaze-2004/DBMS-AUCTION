@@ -1,16 +1,16 @@
-// src/components/LandingPage.js
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "./loading.js";
 import "../styles/landingpage.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-export default function LandingPage({ loading, setLoading }) {
+export default function LandingPage({
+  loading,
+  setLoading
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000); // Simulate loading delay
+    const timer = setTimeout(() => setLoading(false), 2000); 
     return () => clearTimeout(timer);
   }, [setLoading]);
 
@@ -33,97 +33,58 @@ export default function LandingPage({ loading, setLoading }) {
     return () => window.removeEventListener("scroll", reveal);
   }, []);
 
-  useEffect(() => {
-    const ctaBtn = document.querySelector(".cta-btn");
-    const handleClick = () => {
-      //alert("visvesswar will add the necessary stuff here!");
-      navigate('/register');
-    };
+  // useEffect(() => {
+  //   const ctaBtn = document.querySelector(".cta-btn");
+  //   const handleClick = () => {
+  //     setIsLandingpageOpen(false);
+  //     console.log(isLandingpageOpen,"clicked");
+  //     navigate("/register");
+  //   };
 
-    if (ctaBtn) {
-      ctaBtn.addEventListener("click", handleClick);
-    }
+  //   if (ctaBtn) {
+  //     ctaBtn.addEventListener("click", handleClick);
+  //   }
 
-    return () => {
-      if (ctaBtn) {
-        ctaBtn.removeEventListener("click", handleClick);
-      }
-    };
-  }, [navigate]);
+  //   return () => {
+  //     if (ctaBtn) {
+  //       ctaBtn.removeEventListener("click", handleClick);
+  //     }
+  //   };
+  // }, [navigate]);
 
   if (loading) {
     return <Loading />;
   }
 
+  function nav() {
+    navigate("/register");
+  }
+
   return (
     <div>
-      <div id="loading"></div>
-      <header>
-        <nav>
-          <div className="container">
-            <a href="#home">
-              <img
-                src="./images/carseek.jpg" // Adjust the path as needed
-                width="130"
-                height="50"
-                className="item"
-                alt="Car Seek Logo"
-              />
-            </a>
-          </div>
-          <div className="nav-links">
-            <div className="item">
-              <a href="#home">Home</a>
-            </div>
-            <div className="item">
-              <a href="#about">About</a>
-            </div>
-            <div className="item">
-              <a href="#services">Services</a>
-            </div>
-            <div className="item">
-              <a href="#contact">Contact</a>
-            </div>
-          </div>
-          <div className="nav-links">
-            <div className="logo">
-              {/* <img
-                src="./images/loginlogo.jpg" // Adjust the path as needed
-                width="70"
-                height="50"
-                alt="Login Logo"
-              /> */}
-              <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff" }} />
-            </div>
-            <div className="item">
-              <button className="login-btn">Login</button>
-            </div>
-          </div>
-        </nav>
-      </header>
+     
 
       <section id="home" className="hero-section">
         <div className="hero-content">
           <h1>Welcome to Car Seek</h1>
           <p>Discover our services and solutions designed just for you.</p>
-          <button className="cta-btn">Get Started</button>
+          <button className="cta-btn" onClick={nav}>
+            Get Started
+          </button>
         </div>
-        {Array.from({ length: 16 }).map((_, index) => (
-          <iframe
-            key={index}
-            width="0"
-            height="0"
-            src="https://www.youtube.com/embed/Yf5d_Zx3AaI?si=rBAIoaHjW3iw0H6Q"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        ))}
+        <iframe
+          width="0"
+          height="0"
+          src="https://www.youtube.com/embed/Yf5d_Zx3AaI?si=rBAIoaHjW3iw0H6Q"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
       </section>
 
-      <section id="about" className="about-section">
+      <section id="about" className="about-section mt-5">
         <h2>About Us</h2>
         <p>"Your necessity and demand is our priority."</p>
       </section>
@@ -135,10 +96,15 @@ export default function LandingPage({ loading, setLoading }) {
             <p>Trustworthy and verified sellers.</p>
           </div>
           <div className="service-item">
-            <p>Great assistance for you in finding the right value for your car.</p>
+            <p>
+              Great assistance for you in finding the right value for your car.
+            </p>
           </div>
           <div className="service-item">
-            <p>Provide you with real-time info about the available cars in the market.</p>
+            <p>
+              Provide you with real-time info about the available cars in the
+              market.
+            </p>
           </div>
         </div>
       </section>

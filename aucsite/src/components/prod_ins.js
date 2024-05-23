@@ -449,14 +449,15 @@ export default function ProdIns({ user }) {
   
 
   return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-black to-blue-800 text-white py-8 px-4 overflow-y-auto">
     <div className="container-fluid">
       <div className="row justify-content-center mt-5 mx-auto w-75">
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <h2 className="text-center mb-4">Reg_product</h2>
+              <h2 className="text-center mb-4 font-bold text-3xl">ADD PRODUCT FOR SALE</h2>
               <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className="mb-3">
+                <div className="mb-3 font-bold">
                   <label htmlFor="inputUserName">Username</label>
                   <input
                     type="text"
@@ -465,6 +466,7 @@ export default function ProdIns({ user }) {
                     placeholder="UserName"
                     name="username"
                     value={formData.username}
+                    required
                     onChange={handleChange}
                   />
                 </div>
@@ -482,13 +484,14 @@ export default function ProdIns({ user }) {
                     value={formData.prod_name}
                   />
                 </div> */}
-                <div className="mb-3">
+                <div className="mb-3 font-bold">
                   <label htmlFor="carBrand" className="form-label">Car Brand</label>
                   <select
                     className="form-select"
                     id="carBrand"
                     name="car_brand"
                     value={formData.car_brand}
+                    required
                     onChange={handleBrandChange}
                   >
                     <option value="">Select Brand</option>
@@ -499,12 +502,13 @@ export default function ProdIns({ user }) {
                     ))}
                   </select>
                 </div>
-                <div className="mb-3">
+                <div className="mb-3 font-bold">
                   <label htmlFor="carModel" className="form-label">Car Model</label>
                   <select
                     className="form-select"
                     id="carModel"
                     name="car_model"
+                    required
                     value={formData.car_model}
                     onChange={handleChange}
                     disabled={!formData.car_brand}
@@ -517,7 +521,7 @@ export default function ProdIns({ user }) {
                     ))}
                   </select>
                 </div>
-                <div className="mb-3">
+                {/* <div className="mb-3 font-bold">
                   <label htmlFor="image" className="form-label">Car official document</label>
                   <input
                     type="file"
@@ -527,20 +531,21 @@ export default function ProdIns({ user }) {
                     onChange={handleChange}
                     className="mt-1 block w-full border-gray-300 rounded-md shadow-sm form-control"
                   />
-                </div>
-                <div className="mb-3">
+                </div> */}
+                <div className="mb-3 font-bold">
                   <label htmlFor="image" className="form-label">Car image</label>
                   <input
                     type="file"
                     id="image"
                     name="image"
+                    required
                     multiple
                     accept="image/png, image/jpeg, image/jpg"
                     onChange={handleChange}
                     className="mt-1 block w-full border-gray-300 rounded-md shadow-sm form-control"
                   />
                 </div>
-                <div className="mb-3">
+                <div className="mb-3 font-bold">
                   <label className="form-label">Sale Type</label>
                   <br />
                   <input
@@ -564,7 +569,7 @@ export default function ProdIns({ user }) {
                 </div>
                 {saleType === "direct" && (
                   <div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="email" className="form-label">Email address</label>
                       <input
                         type="email"
@@ -573,14 +578,13 @@ export default function ProdIns({ user }) {
                         placeholder="Enter email"
                         name="email"
                         value={formData.email}
+                        required
                         onChange={handleChange}
                       />
-=======
-                      <label htmlFor="email" className="form-label">Email address</label>
-                      <input type="email" className="form-control " id="email" placeholder="Enter email" name="email" value={formData.email} onChange={handleChange} />
->>>>>>> Stashed changes
+
+
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="password" className="form-label">Password</label>
                       <input
                         type="password"
@@ -589,10 +593,11 @@ export default function ProdIns({ user }) {
                         placeholder="Password"
                         name="password"
                         value={formData.password}
+                        required
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="years_of_use" className="form-label">Years of use</label>
                       <input
                         type="number"
@@ -604,7 +609,7 @@ export default function ProdIns({ user }) {
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="price" className="form-label">Price</label>
                       <input
                         type="number"
@@ -615,6 +620,7 @@ export default function ProdIns({ user }) {
                         max="100000000.00"
                         step="1000"
                         name="price"
+                        required
                         value={formData.price}
                         onChange={handleChange}
                       />
@@ -623,7 +629,7 @@ export default function ProdIns({ user }) {
                 )}
                 {saleType === "auction" && (
                   <div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="email" className="form-label">Email address</label>
                       <input
                         type="email"
@@ -632,17 +638,19 @@ export default function ProdIns({ user }) {
                         placeholder="Enter email"
                         name="email"
                         value={formData.email}
+                        required
                         onChange={handleChange}
                       />
-=======
-                      <label htmlFor="email" className="form-label">Email address</label>
-                      <input type="email" className="form-control " id="email" placeholder="Enter email" name="email" value={formData.email} onChange={handleChange} />
->>>>>>> Stashed changes
+
+                      
+                      
+
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="password" className="form-label">Password</label>
                       <input
                         type="password"
+                        required
                         className="form-control"
                         id="password"
                         placeholder="Password"
@@ -651,7 +659,7 @@ export default function ProdIns({ user }) {
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="years_of_use" className="form-label">Years of use</label>
                       <input
                         type="number"
@@ -663,7 +671,7 @@ export default function ProdIns({ user }) {
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="price" className="form-label">Price</label>
                       <input
                         type="number"
@@ -675,10 +683,11 @@ export default function ProdIns({ user }) {
                         step="1000"
                         name="price"
                         value={formData.price}
+                        required
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 font-bold">
                       <label htmlFor="auc_period" className="form-label">Auction duration (in hrs)</label>
                       <input
                         type="number"
@@ -686,21 +695,23 @@ export default function ProdIns({ user }) {
                         id="auc_period"
                         placeholder="10"
                         min="3"
-                        max="14"
+                        max="100"
                         name="duration"
                         defaultValue={null}
                         value={formData.duration}
+                        required
                         onChange={handleChange}
                       />
                     </div>
                   </div>
                 )}
-                <button type="submit" className="btn btn-primary">Register</button>
+                <button type="submit" className="btn btn-primary">Add product</button>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
+ </div>
   );
 }
