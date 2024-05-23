@@ -1,37 +1,48 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import React from "react";
-//import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css"; 
+ import "../styles/tailwind.css";
+// Still including Bootstrap if needed
 
 function Dashboard({ user }) {
   return (
-    <div className="container-fluid bg-light text-center mt-5">
-      <h1>welcome to your dashboard</h1>
-      <Link to="/viewInfo" className="px-2 text-white">
-        <button className="btn btn-primary btn-block mt-2 mb-2">My Bio</button>
-      </Link>
-      <Link to="/prod_ins" className="px-2 text-white">
-        <button className="btn btn-primary btn-block mt-2 mb-2">
-          Sell product
-        </button>
-      </Link>
-      <Link to="/viewdirOrders" className="px-2 text-white">
-        <button className="btn btn-primary btn-block mt-2 mb-2">
-          Previous Direct Orders
-        </button>
-      </Link>
-      <Link to="/viewaucOrders" className="px-2 text-white">
-        <button className="btn btn-primary btn-block mt-2 mb-2">
-          Previous Auction Orders
-        </button>
-      </Link>
-      <Link to="/SoldProduct" className="px-2 text-white">
-        <button className="btn btn-primary btn-block mt-2 mb-2">
-          sold_products
-        </button>
-      </Link>
-      {console.log("user" + user)}
+    <div className="min-h-screen relative bg-gradient-to-br from-blue-900 via-black to-blue-800 overflow-hidden">
+      {/* Stars Layer */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+      
+      <div className="relative w-full max-w-md bg-white bg-opacity-90 text-center p-8 rounded-lg shadow-lg mx-auto my-10">
+        <h1 className="text-4xl font-bold text-gray-800 mb-8">Dashboard</h1>
+        <div className="flex flex-col space-y-4">
+          <Link to="/viewInfo">
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+              My Bio
+            </button>
+          </Link>
+          <Link to="/prod_ins">
+            <button className="w-full bg-green-400 hover:bg-green-500 text-white font-bold py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+              Sell Product
+            </button>
+          </Link>
+          <Link to="/viewdirOrders">
+            <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+              Previous Direct Orders
+            </button>
+          </Link>
+          <Link to="/viewaucOrders">
+            <button className="w-full bg-red-400 hover:bg-red-500 text-white font-bold py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+              Previous Auction Orders
+            </button>
+          </Link>
+          <Link to="/SoldProduct">
+            <button className="w-full bg-teal-400 hover:bg-teal-500 text-white font-bold py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+              My sales
+            </button>
+          </Link>
+        </div>
+      </div>
+      {console.log("user", user)}
     </div>
   );
 }
+
 export default Dashboard;
