@@ -8,36 +8,34 @@ import "react-toastify/dist/ReactToastify.css";
 
 const stateCityData = {
   "Tamil Nadu":["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Vellore", "Erode", "Thoothukudi", "Dindigul", "Thanjavur", "Ranipet", "Sivakasi", "Karur", "Udhagamandalam (Ooty)", "Hosur", "Nagercoil", "Kanchipuram", "Kumbakonam", "Tiruvannamalai"],
-  "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Kurnool", "Rajahmundry", "Tirupati", "Kadapa", "Anantapur", "Eluru", "Ongole", "Vizianagaram", "Machilipatnam", "Nandyal", "Srikakulam", "Chittoor", "Hindupur", "Proddatur", "Bhimavaram", "Tenali"],
-  "Karnataka":["Bengaluru", "Mysuru", "Mangalore", "Hubballi-Dharwad", "Belagavi", "Kalaburagi", "Davanagere", "Ballari", "Vijayapura", "Shivamogga", "Tumakuru", "Raichur", "Bidar", "Hosapete", "Gadag-Betageri", "Robertsonpet", "Udupi", "Kolar", "Chikkamagaluru", "Bagalkot"],
-  "Maharashtra":["Mumbai", "Pune", "Nagpur", "Thane", "Nashik", "Aurangabad", "Solapur", "Amravati", "Kolhapur", "Akola", "Jalgaon", "Latur", "Dhule", "Ahmednagar", "Chandrapur", "Parbhani", "Ichalkaranji", "Sangli-Miraj & Kupwad", "Nanded", "Malegaon"],
-  "Uttar Pradesh":["Lucknow", "Kanpur", "Ghaziabad", "Agra", "Varanasi", "Meerut", "Allahabad (Prayagraj)", "Bareilly", "Aligarh", "Moradabad", "Saharanpur", "Gorakhpur", "Noida", "Firozabad", "Jhansi", "Muzaffarnagar", "Mathura", "Rampur", "Shahjahanpur", "Faizabad (Ayodhya)"],
-  "West Bengal":["Kolkata", "Asansol", "Siliguri", "Durgapur", "Bardhaman", "Malda", "Kharagpur", "Jalpaiguri", "Haldia", "Baharampur", "Habra", "Krishnanagar", "Shantipur", "Dankuni", "Raniganj", "Bhatpara", "Chandannagar", "Hugli-Chinsurah", "Uttarpara Kotrung", "Balurghat"],
-  "Gujarat":["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", "Gandhinagar", "Anand", "Navsari", "Bharuch", "Valsad", "Porbandar", "Surendranagar", "Morbi", "Nadiad", "Mehsana", "Palanpur", "Bhuj", "Veraval"],
-  "Rajasthan":["Jaipur", "Jodhpur", "Kota", "Bikaner", "Ajmer", "Udaipur", "Bhilwara", "Alwar", "Bharatpur", "Sikar", "Pali", "Barmer", "Tonk", "Sri Ganganagar", "Jhunjhunu", "Banswara", "Dungarpur", "Chittorgarh", "Bundi", "Nagaur"],
-  "Punjab":["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda", "Hoshiarpur", "Mohali", "Batala", "Pathankot", "Moga", "Abohar", "Malerkotla", "Khanna", "Phagwara", "Muktsar", "Barnala", "Rajpura", "Firozpur", "Kapurthala", "Faridkot"],
-  "Haryana":["Faridabad", "Gurgaon", "Panipat", "Ambala", "Yamunanagar", "Rohtak", "Hisar", "Karnal", "Sonipat", "Panchkula", "Bhiwani", "Sirsa", "Bahadurgarh", "Jind", "Thanesar", "Kaithal", "Palwal", "Rewari", "Narnaul", "Mahendragarh"],
-  "Bihar":["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga", "Bihar Sharif", "Purnia", "Arrah", "Begusarai", "Katihar", "Munger", "Chhapra", "Danapur", "Bettiah", "Saharsa", "Sasaram", "Hajipur", "Dehri", "Siwan", "Motihari"],
- "Madhya Pradesh":["Indore", "Bhopal", "Jabalpur", "Gwalior", "Ujjain", "Sagar", "Dewas", "Satna", "Ratlam", "Rewa", "Murwara (Katni)", "Singrauli", "Burhanpur", "Khandwa", "Bhind", "Chhindwara", "Guna", "Shivpuri", "Vidisha", "Chhatarpur"],
-  "Odisha":["Bhubaneswar", "Cuttack", "Rourkela", "Berhampur", "Sambalpur", "Puri", "Balasore", "Brahmapur", "Bhadrak", "Baripada", "Bhawanipatna", "Rayagada", "Jharsuguda", "Angul", "Dhenkanal", "Bargarh", "Kendujhar", "Paradip", "Jajpur", "Jeypore"],
   "Kerala":["Thiruvananthapuram", "Kochi", "Kozhikode", "Kollam", "Thrissur", "Alappuzha", "Palakkad", "Kottayam", "Kannur", "Manjeri", "Kasaragod", "Aluva", "Kollankodu", "Thalassery", "Ponnani", "Kayamkulam", "Neyyattinkara", "Kanhangad", "Adoor", "Tirur"],
-  "Telangana":["Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Ramagundam", "Khammam", "Mahbubnagar", "Mancherial", "Adilabad", "Suryapet", "Jagtial", "Miryalaguda", "Nalgonda", "Kamareddy", "Sangareddy", "Bodhan", "Nirmal", "Kothagudem", "Vikarabad", "Sirpur Kagaznagar"],
-  "Jharkhand":["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro Steel City", "Deoghar", "Phusro", "Hazaribagh", "Giridih", "Ramgarh", "Medininagar (Daltonganj)", "Chirkunda", "Jhumri Tilaiya", "Gumla", "Jamtara", "Garhwa", "Latehar", "Simdega", "Chaibasa", "Gobindpur", "Chatra"],
-  "Assam":["Guwahati", "Silchar", "Dibrugarh", "Nagaon", "Tinsukia", "Jorhat", "Bongaigaon City", "Dhubri", "Diphu", "North Lakhimpur", "Tezpur", "Karimganj", "Sibsagar", "Goalpara", "Barpeta", "Nalbari", "Hailakandi", "Hamren", "Lanka", "Abhayapuri"],
-  "Chhattisgarh": ["Raipur", "Bhilai", "Korba", "Bilaspur", "Durg", "Rajnandgaon", "Raigarh", "Jagdalpur", "Ambikapur", "Chirmiri", "Dhamtari", "Mahasamund", "Bhatapara", "Bijapur", "Narayanpur", "Kanker", "Kawardha", "Dongargarh", "Saraipali", "Manendragarh"],
-  "Haryana":["Faridabad", "Gurgaon", "Panipat", "Ambala", "Yamunanagar", "Rohtak", "Hisar", "Karnal", "Sonipat", "Panchkula", "Bhiwani", "Sirsa", "Bahadurgarh", "Jind", "Thanesar", "Kaithal", "Palwal", "Rewari", "Narnaul", "Mahendragarh"],
- "Uttarakhand":["Dehradun", "Haridwar", "Roorkee", "Haldwani", "Rudrapur", "Kashipur", "Rishikesh", "Pithoragarh", "Ramnagar", "Manglaur", "Kichha", "Bageshwar", "Jaspur", "Vikasnagar", "Kotdwara", "Srinagar", "Bazpur", "Nainital", "Tehri", "Ranikhet"],
+  "Karnataka":["Bengaluru", "Mysuru", "Mangalore", "Hubballi-Dharwad", "Belagavi", "Kalaburagi", "Davanagere", "Ballari", "Vijayapura", "Shivamogga", "Tumakuru", "Raichur", "Bidar", "Hosapete", "Gadag-Betageri", "Robertsonpet", "Udupi", "Kolar", "Chikkamagaluru", "Bagalkot"],
+  "Andhra Pradesh":["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Kurnool", "Rajahmundry", "Tirupati", "Kadapa", "Anantapur", "Eluru", "Ongole", "Vizianagaram", "Machilipatnam", "Nandyal", "Srikakulam", "Chittoor", "Hindupur", "Proddatur", "Bhimavaram", "Tenali"],
 "Arunachal Pradesh":["Itanagar", "Naharlagun", "Pasighat", "Namsai", "Ziro", "Tezu", "Bomdila", "Aalo", "Along", "Daporijo", "Seppa", "Roing", "Anini", "Khonsa", "Tawang", "Changlang", "Yingkiong", "Bordumsa", "Deomali", "Mechuka"],
 "Nagaland":["Kohima", "Dimapur", "Mokokchung", "Tuensang", "Wokha", "Zunheboto", "Phek", "Mon", "Chumukedima", "Medziphema", "Pfutsero", "Longleng", "Tizit", "Kiphire", "Changtongya", "Tuli", "Tamlu", "Meluri", "Alichen", "Satakha"],
- "Tripura":["Agartala", "Udaipur", "Dharmanagar", "Kailasahar", "Belonia", "Ambassa", "Khowai", "Teliamura", "Sonamura", "Kamalpur", "Bishalgarh", "Santirbazar", "Kumarghat", "Sabroom", "Amarpur", "Jogendranagar"],
+"Tripura":["Agartala", "Udaipur", "Dharmanagar", "Kailasahar", "Belonia", "Ambassa", "Khowai", "Teliamura", "Sonamura", "Kamalpur", "Bishalgarh", "Santirbazar", "Kumarghat", "Sabroom", "Amarpur", "Jogendranagar"],
+"Gujarat":["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", "Gandhinagar", "Anand", "Navsari", "Bharuch", "Valsad", "Porbandar", "Surendranagar", "Morbi", "Nadiad", "Mehsana", "Palanpur", "Bhuj", "Veraval"],
+"Rajasthan":["Jaipur", "Jodhpur", "Kota", "Bikaner", "Ajmer", "Udaipur", "Bhilwara", "Alwar", "Bharatpur", "Sikar", "Pali", "Barmer", "Tonk", "Sri Ganganagar", "Jhunjhunu", "Banswara", "Dungarpur", "Chittorgarh", "Bundi", "Nagaur"],
+"Punjab":["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda", "Hoshiarpur", "Mohali", "Batala", "Pathankot", "Moga", "Abohar", "Malerkotla", "Khanna", "Phagwara", "Muktsar", "Barnala", "Rajpura", "Firozpur", "Kapurthala", "Faridkot"],
+"Haryana":["Faridabad", "Gurgaon", "Panipat", "Ambala", "Yamunanagar", "Rohtak", "Hisar", "Karnal", "Sonipat", "Panchkula", "Bhiwani", "Sirsa", "Bahadurgarh", "Jind", "Thanesar", "Kaithal", "Palwal", "Rewari", "Narnaul", "Mahendragarh"],
+"Bihar":["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga", "Bihar Sharif", "Purnia", "Arrah", "Begusarai", "Katihar", "Munger", "Chhapra", "Danapur", "Bettiah", "Saharsa", "Sasaram", "Hajipur", "Dehri", "Siwan", "Motihari"],
+"Jharkhand":["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro Steel City", "Deoghar", "Phusro", "Hazaribagh", "Giridih", "Ramgarh", "Medininagar (Daltonganj)", "Chirkunda", "Jhumri Tilaiya", "Gumla", "Jamtara", "Garhwa", "Latehar", "Simdega", "Chaibasa", "Gobindpur", "Chatra"],
+"Assam":["Guwahati", "Silchar", "Dibrugarh", "Nagaon", "Tinsukia", "Jorhat", "Bongaigaon City", "Dhubri", "Diphu", "North Lakhimpur", "Tezpur", "Karimganj", "Sibsagar", "Goalpara", "Barpeta", "Nalbari", "Hailakandi", "Hamren", "Lanka", "Abhayapuri"],
+"Chhattisgarh":["Raipur", "Bhilai", "Korba", "Bilaspur", "Durg", "Rajnandgaon", "Raigarh", "Jagdalpur", "Ambikapur", "Chirmiri", "Dhamtari", "Mahasamund", "Bhatapara", "Bijapur", "Narayanpur", "Kanker", "Kawardha", "Dongargarh", "Saraipali", "Manendragarh"],
+"Uttarakhand":["Dehradun", "Haridwar", "Roorkee", "Haldwani", "Rudrapur", "Kashipur", "Rishikesh", "Pithoragarh", "Ramnagar", "Manglaur", "Kichha", "Bageshwar", "Jaspur", "Vikasnagar", "Kotdwara", "Srinagar", "Bazpur", "Nainital", "Tehri", "Ranikhet"],
 "Himachal Pradesh":["Shimla", "Solan", "Dharamsala", "Palampur", "Mandi", "Kullu", "Chamba", "Nahan", "Una", "Bilaspur", "Hamirpur", "Nurpur", "Baddi", "Sundernagar", "Paonta Sahib", "Kangra", "Dalhousie", "Mandi", "Parwanoo", "Jogindernagar"],
 "Goa":["Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Bicholim", "Curchorem", "Cuncolim", "Valpoi", "Sanguem", "Sanquelim", "Canacona", "Quepem", "Dharbandora", "Cortalim", "Pernem", "Aldona", "Chaudi", "Curchorem Cacora", "Davorlim"],
 "Manipur":["Imphal", "Thoubal", "Lilong", "Mayang Imphal", "Kakching", "Nambol", "Yairipok", "Wangoi", "Bishnupur", "Kangpokpi", "Kakching Khunou", "Thongkhong Laxmi Bazar", "Wangjing", "Heirok", "Sugnu", "Sikhong Sekmai", "Samurou", "Lamai", "Sugnu", "Oinam"],
 "Meghalaya":["Shillong", "Tura", "Nongstoin", "Jowai", "Baghmara", "Williamnagar", "Nongpoh", "Resubelpara", "Mairang", "Cherrapunji", "Mawkyrwat", "Mawsynram", "Amlarem", "Ranikor", "Nongpoh", "Nongstoin", "Shella Bholaganj", "Baghmara", "Mawphlang", "Mendipathar"],
 "Mizoram":["Aizawl", "Lunglei", "Saiha", "Champhai", "Kolasib", "Serchhip", "Lawngtlai", "Saitual", "Thenzawl", "Khawhai", "Hnahthial", "Biate", "Bairabi", "Tlabung"],
+"Madhya Pradesh":["Indore", "Bhopal", "Jabalpur", "Gwalior", "Ujjain", "Sagar", "Dewas", "Satna", "Ratlam", "Rewa", "Murwara (Katni)", "Singrauli", "Burhanpur", "Khandwa", "Bhind", "Chhindwara", "Guna", "Shivpuri", "Vidisha", "Chhatarpur"],
+"Odisha":["Bhubaneswar", "Cuttack", "Rourkela", "Berhampur", "Sambalpur", "Puri", "Balasore", "Brahmapur", "Bhadrak", "Baripada", "Bhawanipatna", "Rayagada", "Jharsuguda", "Angul", "Dhenkanal", "Bargarh", "Kendujhar", "Paradip", "Jajpur", "Jeypore"],
+"Telangana":["Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Ramagundam", "Khammam", "Mahbubnagar", "Mancherial", "Adilabad", "Suryapet", "Jagtial", "Miryalaguda", "Nalgonda", "Kamareddy", "Sangareddy", "Bodhan", "Nirmal", "Kothagudem", "Vikarabad", "Sirpur Kagaznagar"],
+"Uttar Pradesh":["Lucknow", "Kanpur", "Ghaziabad", "Agra", "Varanasi", "Meerut", "Allahabad (Prayagraj)", "Bareilly", "Aligarh", "Moradabad", "Saharanpur", "Gorakhpur", "Noida", "Firozabad", "Jhansi", "Muzaffarnagar", "Mathura", "Rampur", "Shahjahanpur", "Faizabad (Ayodhya)"],
+"Maharashtra":["Mumbai", "Pune", "Nagpur", "Thane", "Nashik", "Aurangabad", "Solapur", "Amravati", "Kolhapur", "Akola", "Jalgaon", "Latur", "Dhule", "Ahmednagar", "Chandrapur", "Parbhani", "Ichalkaranji", "Sangli-Miraj & Kupwad", "Nanded", "Malegaon"],
+"West Bengal":["Kolkata", "Asansol", "Siliguri", "Durgapur", "Bardhaman", "Malda", "Kharagpur", "Jalpaiguri", "Haldia", "Baharampur", "Habra", "Krishnanagar", "Shantipur", "Dankuni", "Raniganj", "Bhatpara", "Chandannagar", "Hugli-Chinsurah", "Uttarpara Kotrung", "Balurghat"],
 "Sikkim":["Gangtok", "Namchi", "Mangan", "Jorethang", "Rangpo", "Gyalshing", "Singtam", "Ravangla", "Soreng", "Rhenock", "Nayabazar"]
-};
-
+}
 function UserUpdate({ user }) {
   const [formData, setFormData] = useState({
     username: "",
@@ -66,7 +64,10 @@ function UserUpdate({ user }) {
     e.preventDefault();
     try {
       console.log("data:", formData);
-      const response = await axios.post(`http://localhost:3000/user/userUpdate/${user}`,formData);
+      const response = await axios.post(
+       ` http://localhost:3001/user/userUpdate/${user}`,
+        formData
+      );
       console.log("User updated successfully:", response.data);
       if (response.status === 200) {
         toast.success("User updated successfully");

@@ -78,22 +78,26 @@ function Login({ setUser }) {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="mx-3">
+
                 <button
                   type="submit"
-                  className="btn btn-primary rounded-pill px-5"
-                >
+                  className="block btn btn-primary rounded-pill px-5 m-2 "
+                  >
                   Login
                 </button>
+                  </div>
+                  <div>
+
+                <button className=" mx-1 btn btn-secondary rounded-pill px-5">
                 <Link
                   to="/register"
-                  className="btn btn-primary btn btn-secondary rounded-pill px-5"
-                ></Link>
-                <Link
-                  to="/register"
-                  className="btn btn-primary btn btn-secondary rounded-pill px-5"
-                >
+                  className=" text-light text-decoration-none "
+                  >
                   Register
                 </Link>
+                </button>
+                  </div>
               </form>
             </div>
           </div>
