@@ -39,18 +39,22 @@ const ProductDetails = () => {
           <thead>
             <tr>
               <th>S no.</th>
-              <th>Product Name</th>
+              <th>Car Brand</th>
+              <th>Car Model</th>
               <th>Price</th>
               <th>Years of Usage</th>
+              <th>Sale-Status</th>
             </tr>
           </thead>
           <tbody>
           {
-            productDetails.map((product,index) => (<tr key={product.prod_name}>
+            productDetails.map((product,index) => (<tr key={product.prod_id}>
               <td>{index+1}</td>
-              <td>{product.prod_name}</td>
+              <td>{product.car_brand}</td>
+              <td>{product.car_model}</td>
               <td>{product.price}</td>
               <td>{product.y_o_u ? product.y_o_u : "Not for auction"}</td>
+              <td>{product.sold_status? "Sold" : "Yet to be Sold"}</td>
             </tr>))
           }
           </tbody>

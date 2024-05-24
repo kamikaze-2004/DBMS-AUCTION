@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from "react-router-dom";
 
 export default function ViewProduct({ user }) {
-  const pname  = useParams().prodname;
-  console.log("pname:",pname);
+  const prodid = useParams().prodname;
+  console.log("pname:",prodid);
   const [prod, setProd] = useState(null);
   const [error, setError] = useState(null);
   const [raise, setRaise] = useState(false);
@@ -14,7 +14,7 @@ export default function ViewProduct({ user }) {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/user/products/${pname}`
+          `http://localhost:3001/user/products/${prodid}`
         );
         setProd(response.data);
         console.log("product details:",prod);
@@ -50,14 +50,14 @@ export default function ViewProduct({ user }) {
         <div className="col-md-8">
           <div className="card text-dark bg-light h-100">
             <div className="card-header">
-              <h3 className="card-title">{prod.prod_name}</h3>
+              <h3 className="card-title">{prod.car_brand+"  "+prod.car_model}</h3>
             </div>
             <div className="card-body">
               {prod.image_url && (
                 <div className="text-center mb-3">
                   <img
                     src={prod.image_url}
-                    alt={prod.prod_name}
+                    alt={prod.car_brand + prod.car_model}
                     className="img-fluid"
                     style={{ maxHeight: "300px" }}
                   />

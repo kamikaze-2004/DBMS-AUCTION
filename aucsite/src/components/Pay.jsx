@@ -10,23 +10,23 @@ import { useNavigate } from "react-router-dom";
 //console.log(orderId);
 export default function PayOrder({ user, setUser, seller, setSeller }) {
   //const [orderId, setOrderId] = useState('');
-  const prodname = useParams().prodname;
+  console.log(useParams());
+  const prodid = useParams().prodname;
   const navigate = useNavigate();
   const [oid, setOid] = useState(null);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const check = 1234;
 
   const price = queryParams.get("price");
 
-  console.log("product name:", prodname);
+  console.log("product name:", prodid);
   console.log("price:", price);
 
   const handleOrderNow = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3001/user/create-order/${prodname}`,
+        `http://localhost:3001/user/create-order/${prodid}`,
         {
           buyer: user,
           seller: seller,

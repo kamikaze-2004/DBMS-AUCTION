@@ -26,57 +26,25 @@ function ViewInfo({ user }) {
   if (!userData) return null;
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8">
-          <div className="border p-4">
-            <h1 className="text-center">{user} Details</h1>
-            <table className="table">
-              <tbody>
-                <tr>
-                  <td>Username</td>
-                  <td>{userData.username}</td>
-                </tr>
-                <tr>
-                  <td>Password</td>
-                  <td>{userData.password}</td>
-                </tr>
-                <tr>
-                  <td>Email</td>
-                  <td>{userData.email}</td>
-                </tr>
-                <tr>
-                  <td>First Name</td>
-                  <td>{userData.firstname}</td>
-                </tr>
-                <tr>
-                  <td>Last Name</td>
-                  <td>{userData.lastname}</td>
-                </tr>
-                <tr>
-                  <td>Address</td>
-                  <td>{userData.address}</td>
-                </tr>
-                <tr>
-                  <td>Secondary Address</td>
-                  <td>{userData.address2}</td>
-                </tr>
-                <tr>
-                  <td>City</td>
-                  <td>{userData.city}</td>
-                </tr>
-                <tr>
-                  <td>State</td>
-                  <td>{userData.state}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="text-center">
-              <Link to="/userUpdate" className="btn btn-primary">
-                Update Info
-              </Link>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-600 flex justify-center items-center">
+      <div className="max-w-md w-full bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="px-6 py-4">
+          <h1 className="text-center text-2xl font-bold text-gray-800">
+            {user} Details
+          </h1>
+          <div className="mt-4">
+            {Object.entries(userData).map(([key, value]) => (
+              <div key={key} className="flex justify-between items-center border-b-2 border-gray-200 py-2">
+                <p className="text-lg font-semibold text-gray-700 capitalize">{key.replace('_', ' ')}</p>
+                <p className="text-lg text-gray-700">{key === 'password' ? '*'.repeat(value.length) : value}</p>
+              </div>
+            ))}
           </div>
+        </div>
+        <div className="px-6 py-4 flex justify-center">
+          <Link to="/userUpdate" className="btn btn-primary">
+            Update Info
+          </Link>
         </div>
       </div>
     </div>

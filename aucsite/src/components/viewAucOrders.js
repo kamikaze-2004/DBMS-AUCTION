@@ -21,7 +21,7 @@ export default function ViewAucOrder({ user }) {
       }
     };
     getUserOrder();
-  }, [user]);
+  }, [user,userOrder]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
